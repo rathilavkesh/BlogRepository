@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug">
+	<Properties>
+		<Property name="log-path">C://logs</Property>
+		<Property name="file-name">blogs</Property>
+		<Property name="pattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Property>
+	</Properties>
+
+	<Appenders>
+
+		<!-- Below is a sample configuration that uses a RollingFileAppender with 
+			both the time and size based triggering policies, will create up to 100 archives 
+			on the same day (1-100) that are stored in a directory based on the current 
+			year and month, and will compress each archive using gzip and will roll every 
+			6 hour. During every rollover, this configuration will delete files that 
+			match "*/app-*.log.gz" and are 30 days old or older, but keep the most recent 
+			100 GB or the most recent 10 files, whichever comes -->
+		<RollingFile name="file-log" fileName="${sys:log-path}/${file-name}.log"
+			filePattern="${log-path}/$${date:yyyy-MM}/${file-name}-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="6"
+					modulate="true" />
+				<SizeBasedTriggeringPolicy size="250 MB" />
+			</Policies>
+
+			<DefaultRolloverStrategy max="100">
+
+				<Delete basePath="${baseDir}" maxDepth="2">
+					<IfFileName glob="*/${file-name}-*.log.gz">
+						<IfLastModified age="30d">
+							<IfAny>
+								<IfAccumulatedFileSize exceeds="100 GB" />
+								<IfAccumulatedFileCount exceeds="10" />
+							</IfAny>
+						</IfLastModified>
+					</IfFileName>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<logger name="com.javarock" level="DEBUG" additivity="false">
+			<appender-ref ref="file-log" />
+		</logger>
+		
+		<logger name="org.springframework" level="DEBUG" additivity="false">
+			<appender-ref ref="file-log" />
+		</logger>
+
+		<Root level="INFO" additivity="false">
+			<appender-ref ref="file-log" />
+			<appender-ref ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>
