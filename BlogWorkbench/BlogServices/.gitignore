@@ -1,0 +1,13 @@
+target/**
+*.jar
+*.war
+*.ear
+*.class
+
+# eclipse specific git ignore
+bin/**
+.classpath
+.project
+.metadata
+.settings/
+.loadpath
