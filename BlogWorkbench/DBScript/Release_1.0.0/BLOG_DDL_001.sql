@@ -1,49 +1,46 @@
--- Country Table
 create table COUNTRY
 (
-	COUNTRY_ID int(4) not null,
+	COUNTRY_ID int(4) not null AUTO_INCREMENT,
 	NAME varchar(100),
 	primary key (COUNTRY_ID)
 );
 
--- USER Details Table  :  This will store user information
+create table ROLE
+(
+	ROLE_ID int(2) not null AUTO_INCREMENT,
+	ROLE_NAME varchar(50) not null,
+	primary key (ROLE_ID)
+);
+
+create table USER
+(
+	USER_ID int(20) not null AUTO_INCREMENT,
+	FIRST_NAME varchar(50) NOT NULL,
+	LAST_NAME varchar(50) not null,
+	EMAIL varchar(100) not null,
+	PASSWORD varchar(15) not null,
+	ROLE_ID int(20),
+    IS_ACTIVE boolean not null default true,
+    CREATED_DATE datetime not null,
+    UPDATED_DATE datetime,
+	primary key (USER_ID),
+	CONSTRAINT FK_USER_ROLE FOREIGN KEY (ROLE_ID) REFERENCES ROLE (ROLE_ID)	
+);
+
 create table USER_DETAILS
 (
-	USER_DETAILS_ID int(20) not null,
+	USER_DETAILS_ID int(20) not null,    
 	OCCUPATION varchar(100),
 	COMPANY varchar(100),
     COUNTRY_ID int(4) not null,
     CITY varchar(100),
     STATE varchar(100),
     ZIP_CODE varchar(10),
-	primary key (USER_DETAILS_ID),
-    CONSTRAINT FK_USER_DETAILS_COUNTRY FOREIGN KEY (COUNTRY_ID) REFERENCES COUNTRY (COUNTRY_ID)
+	unique key (USER_DETAILS_ID),
+    CONSTRAINT FK_USER_DETAILS_COUNTRY FOREIGN KEY (COUNTRY_ID) REFERENCES COUNTRY (COUNTRY_ID),
+    CONSTRAINT FK_USER_DETAILS_USER FOREIGN KEY (USER_DETAILS_ID) REFERENCES USER (USER_ID)
 );
 
---Role Table :  This will store role information 
-create table ROLE
-(
-	ROLE_ID int(2) not null,
-	ROLE_NAME varchar(50) not null,
-	primary key (ROLE_ID)
-);
-
---USER Table :  This will basic user inforation 
-create table USER
-(
-	USER_ID int(20) not null,
-	FIRST_NAME varchar(50) NOT NULL,
-	LAST_NAME varchar(50) not null,
-	EMAIL varchar(100) not null,
-	PASSWORD varchar(15) not null,
-	ROLE_ID int(20), 
-	USER_DETAILS_ID int(20),
-	primary key (USER_ID),
-	CONSTRAINT FK_USER_ROLE FOREIGN KEY (ROLE_ID) REFERENCES ROLE (ROLE_ID),
-	CONSTRAINT FK_USER_USER_DETAILS FOREIGN KEY (USER_DETAILS_ID) REFERENCES USER_DETAILS (USER_DETAILS_ID)
-);
-
---BLOG Table :  This will store blog or question inforation 
 create table BLOG
 (
 	BLOG_ID int(20) not null,
@@ -61,7 +58,6 @@ create table BLOG
     CONSTRAINT FK_BLOG_UPDATE_USER FOREIGN KEY (UPDATED_BY) REFERENCES USER (USER_ID)
 );
 
--- BLOG_TRAIL table: This table store all block coment hierarchy
 create table BLOG_TRAIL
 (
 	BLOG_TRAIL_ID int(20) not null,
