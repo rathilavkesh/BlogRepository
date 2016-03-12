@@ -10,11 +10,16 @@ spring:
 
 ---
 spring:
-        profiles: dev
-        datasource:
-        	url: jdbc:mysql://localhost:3306/blogs
-        	username: root
-        	password: root
+  profiles: dev
+    datasource:
+      url: jdbc:mysql://localhost:3306/blogs
+      username: root
+      password: root
 
 ---
+spring:
+  profiles: test
+  jpa:
+    database: HSQL
 
+---
