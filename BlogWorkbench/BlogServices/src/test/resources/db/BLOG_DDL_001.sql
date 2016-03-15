@@ -1,0 +1,25 @@
+create table COUNTRY
+(
+	COUNTRY_ID INTEGER IDENTITY PRIMARY KEY,
+	NAME VARCHAR(100)
+);
+
+create table ROLE
+(
+	ROLE_ID INTEGER IDENTITY PRIMARY KEY,
+	ROLE_NAME varchar(50)
+);
+
+create table USER
+(
+	USER_ID INTEGER IDENTITY PRIMARY KEY,
+	FIRST_NAME varchar(50) NOT NULL,
+	LAST_NAME varchar(50) not null,
+	EMAIL varchar(100) not null,
+	PASSWORD varchar(15) not null,
+	ROLE_ID INTEGER,
+    IS_ACTIVE boolean,
+    CREATED_DATE datetime not null,
+    UPDATED_DATE datetime,
+	CONSTRAINT FK_USER_ROLE FOREIGN KEY (ROLE_ID) REFERENCES ROLE (ROLE_ID)	
+);
