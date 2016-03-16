@@ -21,8 +21,8 @@ import com.blogging.model.User;
 import com.blogging.repository.UserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {UserRepoTest.Config.class})
-public class UserRepoTest {
+@ContextConfiguration(classes = {UserRepositoryTest.Config.class})
+public class UserRepositoryTest {
 	
 	@Resource
 	UserRepository repo;
