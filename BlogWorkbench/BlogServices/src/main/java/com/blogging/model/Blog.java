@@ -1,4 +1,4 @@
-package com.javarock.model;
+package com.blogging.model;
 
 import java.io.Serializable;
 import java.util.Date;

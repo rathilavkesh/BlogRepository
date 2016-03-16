@@ -1,9 +1,9 @@
-package com.javarock.repository;
+package com.blogging.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.javarock.model.User;
+import com.blogging.model.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {

@@ -1,4 +1,4 @@
-package com.javarock.repository;
+package com.blogging.repository;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -17,6 +17,9 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.blogging.model.User;
+import com.blogging.repository.UserRepository;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {UserRepoTest.Config.class})
 public class UserRepoTest {
@@ -28,7 +31,8 @@ public class UserRepoTest {
 	public void test() {
 		Assert.assertTrue(true);
 	}
-
+	
+	
 	
 	@Configuration
 	@EntityScan(basePackages={"com.javarock.model"})
@@ -38,12 +42,10 @@ public class UserRepoTest {
 		
 		@Bean
 		public DataSource dataSource() {
-			
-			// no need shutdown, EmbeddedDatabaseFactoryBean will take care of this
 			EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
 			EmbeddedDatabase db = builder
 				.setType(EmbeddedDatabaseType.HSQL) //.H2 or .DERBY
-				.addScript("db/BLOG_DDL_001.sql")
+				.addScript("db/BLOG_DDL.sql")
 				.build();
 			return db;
 		}
