@@ -3,6 +3,7 @@ target/**
 *.war
 *.ear
 *.class
+*.log
 
 # eclipse specific git ignore
 bin/**
@@ -11,3 +12,5 @@ bin/**
 .metadata
 .settings/
 .loadpath
+
+
