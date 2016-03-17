@@ -8,13 +8,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.blogging.model.User;
 import com.blogging.repository.UserRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-@ContextConfiguration
 public class UserServiceImplTest {
 
 	@Mock
