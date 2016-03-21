@@ -15,4 +15,8 @@ spring:
       username: root
       password: root
 
+security: 
+	  user:
+	    name: blog
+	    password: blog123
 ---

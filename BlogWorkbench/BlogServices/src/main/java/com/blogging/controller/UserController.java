@@ -16,9 +16,6 @@ public class UserController {
 	@Resource
 	private UserService userService;
 	
-
-	
-	
 	@RequestMapping(value="/user/add", produces="application/json", consumes="application/json", method=RequestMethod.POST)
     public User save(@RequestBody User user) {
         return userService.createUser(user);
