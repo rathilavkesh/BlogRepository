@@ -2,41 +2,40 @@ package com.blogging.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 /**
  * The persistent class for the role database table.
  * 
  */
-@Entity
-@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+@Document(collection="role")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ROLE_ID")
-	private int roleId;
+	private ObjectId roleId;
 
-	@Column(name="ROLE_NAME")
 	private String roleName;
 
 	public Role() {
 	}
 
-	public int getRoleId() {
-		return this.roleId;
+	
+
+	public ObjectId getRoleId() {
+		return roleId;
 	}
 
-	public void setRoleId(int roleId) {
+
+
+	public void setRoleId(ObjectId roleId) {
 		this.roleId = roleId;
 	}
+
+
 
 	public String getRoleName() {
 		return this.roleName;

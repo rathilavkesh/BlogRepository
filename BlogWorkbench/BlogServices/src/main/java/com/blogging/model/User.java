@@ -3,76 +3,57 @@ package com.blogging.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 /**
  * The persistent class for the user database table.
  * 
  */
-@Entity
-@Table(name="USER")
+
+@Document(collection="user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="USER_ID")
-	private long userId;
+	private ObjectId userId;
 	
-	@Column(name="FIRST_NAME")
 	private String firstName;
 	
-	@Column(name="LAST_NAME")
 	private String lastName;
 	
-	@Column(name="PASSWORD")
 	private String password;
 
-	@Column(name="EMAIL")
 	private String email;
 
-	@Column(name="IS_ACTIVE")
 	private byte isActive;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATED_DATE", insertable=true, updatable=false)
 	private Date createdDate;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="UPDATED_DATE", insertable=false, updatable=true)
 	private Date updatedDate;
 
-	@Column(name="ROLE_ID")
-	private long roleId;
+	@DBRef
+	private ObjectId roleId;
 
-	//uni-directional one-to-one association to UserDetail
-	@OneToOne(cascade = CascadeType.ALL, optional = false, 
-				fetch = FetchType.LAZY, orphanRemoval = true)
-    @PrimaryKeyJoinColumn
+	@DBRef
 	private UserDetail userDetail;
 
 	public User() {
 	}
 
-	public long getUserId() {
-		return this.userId;
+	
+	public ObjectId getUserId() {
+		return userId;
 	}
 
-	public void setUserId(long userId) {
+
+	public void setUserId(ObjectId userId) {
 		this.userId = userId;
 	}
+
 
 	public Date getCreatedDate() {
 		return this.createdDate;
@@ -130,6 +111,16 @@ public class User implements Serializable {
 		this.updatedDate = updatedDate;
 	}
 
+
+	public ObjectId getRoleId() {
+		return roleId;
+	}
+
+
+	public void setRoleId(ObjectId roleId) {
+		this.roleId = roleId;
+	}
+
 	public UserDetail getUserDetail() {
 		return userDetail;
 	}
@@ -138,11 +129,5 @@ public class User implements Serializable {
 		this.userDetail = userDetail;
 	}
 
-	public long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
-	}
+	
 }

@@ -4,75 +4,85 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * The persistent class for the blog database table.
  */
-@Entity
-@NamedQuery(name = "Blog.findAll", query = "SELECT b FROM Blog b")
+
+@Document(collection="blog")
 public class Blog implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "BLOG_ID")
-	private int blogId;
+	private ObjectId blogId;
 
-	@Lob
 	private String content;
 
 	private String description;
 
-	@Column(name = "expiry_period")
 	private int expiryPeriod;
 
-	@Column(name = "IS_VERIFIED")
 	private int isVerified;
 
-	@Column(name = "SUBMITTED_BY")
 	private int submittedBy;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "SUBMITTED_DATE")
 	private Date submittedDate;
 
 	private String type;
 
-	@Column(name = "UPDATED_BY")
 	private int updatedBy;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "UPDATED_DATE")
 	private Date updatedDate;
 
-	@OneToMany(mappedBy = "blog", fetch=FetchType.LAZY)
+	@DBRef
 	private List<BlogTrail> blogTrails;
 
-	@ManyToMany(mappedBy = "blogs", fetch=FetchType.LAZY)
-	private List<Tag> tags;
+	private List<String> tags;
 
 	public Blog() {
 	}
 
-	public int getBlogId() {
-		return this.blogId;
+	
+
+	public ObjectId getBlogId() {
+		return blogId;
 	}
 
-	public void setBlogId(int blogId) {
+
+
+	public void setBlogId(ObjectId blogId) {
 		this.blogId = blogId;
 	}
+
+
+
+	public List<BlogTrail> getBlogTrails() {
+		return blogTrails;
+	}
+
+
+
+	public void setBlogTrails(List<BlogTrail> blogTrails) {
+		this.blogTrails = blogTrails;
+	}
+
+
+
+	public List<String> getTags() {
+		return tags;
+	}
+
+
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+
 
 	public String getContent() {
 		return this.content;
@@ -146,34 +156,6 @@ public class Blog implements Serializable {
 		this.updatedDate = updatedDate;
 	}
 
-	public List<BlogTrail> getBlogTrails() {
-		return this.blogTrails;
-	}
-
-	public void setBlogTrails(List<BlogTrail> blogTrails) {
-		this.blogTrails = blogTrails;
-	}
-
-	public BlogTrail addBlogTrail(BlogTrail blogTrail) {
-		getBlogTrails().add(blogTrail);
-		blogTrail.setBlog(this);
-
-		return blogTrail;
-	}
-
-	public BlogTrail removeBlogTrail(BlogTrail blogTrail) {
-		getBlogTrails().remove(blogTrail);
-		blogTrail.setBlog(null);
-
-		return blogTrail;
-	}
-
-	public List<Tag> getTags() {
-		return this.tags;
-	}
-
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
-	}
+	
 
 }

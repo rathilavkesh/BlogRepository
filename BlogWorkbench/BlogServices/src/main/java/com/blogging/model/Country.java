@@ -2,43 +2,30 @@ package com.blogging.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 
 /**
  * The persistent class for the country database table.
  * 
  */
-@Entity
-@NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c")
 public class Country implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "COUNTRY_ID")
-	private int countryId;
+	private ObjectId countryId;
 
-	@Column(name = "NAME")
 	private String name;
 
 	public Country() {
 	}
 	
-	public Country(int id, String name) {
-		this.countryId = id;
-		this.name = name;
+
+	public ObjectId getCountryId() {
+		return countryId;
 	}
 
-	public int getCountryId() {
-		return this.countryId;
-	}
-
-	public void setCountryId(int countryId) {
+	public void setCountryId(ObjectId countryId) {
 		this.countryId = countryId;
 	}
 

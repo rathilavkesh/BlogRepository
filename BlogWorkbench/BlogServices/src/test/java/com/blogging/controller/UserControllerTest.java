@@ -10,6 +10,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,17 +70,17 @@ public class UserControllerTest {
 		user.setEmail("test");
 		Byte b = 0X0;
 		user.setIsActive(b);
-		user.setUserId(1);
-		user.setRoleId(1);
+		user.setUserId(new ObjectId());
+		user.setRoleId(new ObjectId());
 		user.setCreatedDate(new Date());
 		user.setUpdatedDate(new Date());
 		UserDetail details = new UserDetail();
 		details.setCity("Test");
 		details.setCompany("abc");
-		details.setCountry(new Country(1, "India"));
+		details.setCountry(new Country());
 		details.setOccupation("abd");
 		details.setState("test");
-		details.setUserDetailsId(1);
+		details.setUserDetailsId(new ObjectId());
 		details.setZipCode("1234");
 		user.setUserDetail(details);
 		return user;

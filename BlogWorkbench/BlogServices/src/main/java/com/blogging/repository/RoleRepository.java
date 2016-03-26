@@ -1,9 +1,9 @@
 package com.blogging.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.blogging.model.Role;
 
-public interface RoleRepository extends CrudRepository<Role, Integer> {
+public interface RoleRepository extends MongoRepository<Role, Integer> {
 
 }
