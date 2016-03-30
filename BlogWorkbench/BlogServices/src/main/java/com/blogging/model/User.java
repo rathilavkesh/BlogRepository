@@ -2,6 +2,7 @@ package com.blogging.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -35,10 +36,8 @@ public class User implements Serializable {
 
 	private Date updatedDate;
 
-	@DBRef
-	private ObjectId roleId;
+	private List<ObjectId> roleId;
 
-	@DBRef
 	private UserDetail userDetail;
 
 	public User() {
@@ -111,15 +110,16 @@ public class User implements Serializable {
 		this.updatedDate = updatedDate;
 	}
 
-
-	public ObjectId getRoleId() {
+	
+	public List<ObjectId> getRoleId() {
 		return roleId;
 	}
 
 
-	public void setRoleId(ObjectId roleId) {
+	public void setRoleId(List<ObjectId> roleId) {
 		this.roleId = roleId;
 	}
+
 
 	public UserDetail getUserDetail() {
 		return userDetail;

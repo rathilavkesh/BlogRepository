@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * 
  */
 
-@Document(collection="userdetails")
 public class UserDetail implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -31,7 +30,6 @@ public class UserDetail implements Serializable {
 
 	private String zipCode;
 
-	@DBRef
 	private Country country;
 
 	public UserDetail() {

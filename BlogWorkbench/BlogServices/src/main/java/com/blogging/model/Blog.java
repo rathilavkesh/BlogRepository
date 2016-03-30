@@ -38,15 +38,29 @@ public class Blog implements Serializable {
 
 	private Date updatedDate;
 
-	@DBRef
-	private List<BlogTrail> blogTrails;
+//	@DBRef
+//	private List<BlogTrail> blogTrails;
 
 	private List<String> tags;
+	
+	private List<String> comments;
 
 	public Blog() {
 	}
 
 	
+
+	public List<String> getComments() {
+		return comments;
+	}
+
+
+
+	public void setComments(List<String> comments) {
+		this.comments = comments;
+	}
+
+
 
 	public ObjectId getBlogId() {
 		return blogId;
@@ -60,15 +74,15 @@ public class Blog implements Serializable {
 
 
 
-	public List<BlogTrail> getBlogTrails() {
-		return blogTrails;
-	}
-
-
-
-	public void setBlogTrails(List<BlogTrail> blogTrails) {
-		this.blogTrails = blogTrails;
-	}
+//	public List<BlogTrail> getBlogTrails() {
+//		return blogTrails;
+//	}
+//
+//
+//
+//	public void setBlogTrails(List<BlogTrail> blogTrails) {
+//		this.blogTrails = blogTrails;
+//	}
 
 
 
