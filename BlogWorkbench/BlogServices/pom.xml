@@ -20,11 +20,11 @@
 	</properties>
 
 
-	<!-- <repositories> <repository> <snapshots> <enabled>false</enabled> </snapshots> 
+	 <repositories> <repository> <snapshots> <enabled>false</enabled> </snapshots> 
 		<id>central</id> <name>libs-release</name> <url>http://artifactory.cobalt.com/artifactory/libs-release</url> 
 		</repository> <repository> <snapshots /> <id>snapshots</id> <name>libs-snapshot</name> 
 		<url>http://artifactory.cobalt.com/artifactory/libs-snapshot</url> </repository> 
-		</repositories> -->
+		</repositories> 
 
 	<dependencies>
 
@@ -71,12 +71,12 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>de.flapdoodle.embed</groupId>
-			<artifactId>de.flapdoodle.embed.mongo</artifactId>
-			<version>1.26</version>
-			<scope>test</scope>
-		</dependency>
+		 <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>1.48.0</version>
+            <scope>test</scope>
+        </dependency>
 		
 		<dependency>
             <groupId>org.springframework.boot</groupId>
