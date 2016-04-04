@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -71,7 +72,7 @@ public class UserControllerTest {
 		Byte b = 0X0;
 		user.setIsActive(b);
 		user.setUserId(new ObjectId());
-		user.setRoleId(new ObjectId());
+		user.setRoleId(Arrays.asList(new ObjectId()));
 		user.setCreatedDate(new Date());
 		user.setUpdatedDate(new Date());
 		UserDetail details = new UserDetail();

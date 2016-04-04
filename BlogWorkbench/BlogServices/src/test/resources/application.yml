@@ -1,7 +1,2 @@
 spring:
   profiles: test
-  datasource:
-    driverClassName: org.hsqldb.jdbcDriver
-    url: jdbc:hsqldb:mem:testdb
-    username: sa
-    password: 
