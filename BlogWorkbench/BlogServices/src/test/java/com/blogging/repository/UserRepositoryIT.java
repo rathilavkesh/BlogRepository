@@ -4,23 +4,19 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
-import junit.framework.Assert;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.blogging.BlogConfiguration;
 import com.blogging.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { UserRepositoryIT.Config.class })
+@SpringApplicationConfiguration(classes = { BlogConfiguration.class })
 public class UserRepositoryIT {
 
 	@Resource
@@ -53,12 +49,4 @@ public class UserRepositoryIT {
 	public void after() {
 		userRepo.deleteAll();
 	}
-
-	@Configuration
-	@EnableMongoRepositories(basePackages = { "com.blogging.repository" })
-	@EntityScan(basePackages = { "com.blogging.model" })
-	@EnableAutoConfiguration
-	public static class Config {
-	}
-
 }

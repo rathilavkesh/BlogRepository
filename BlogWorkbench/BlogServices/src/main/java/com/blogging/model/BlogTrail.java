@@ -3,6 +3,8 @@ package com.blogging.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,13 +21,17 @@ public class BlogTrail implements Serializable {
 	private ObjectId blogTrailId;
 
 	private String content;
+	
+	@NotNull
+	private ObjectId blogId;
 
 	private int parentId;
 
-	private int submittedBy;
+	@NotNull
+	private ObjectId submittedBy;
 
+	@NotNull
 	private Date submittedDate;
-
 
 	public BlogTrail() {
 	}
@@ -34,13 +40,9 @@ public class BlogTrail implements Serializable {
 		return blogTrailId;
 	}
 
-
-
 	public void setBlogTrailId(ObjectId blogTrailId) {
 		this.blogTrailId = blogTrailId;
 	}
-
-
 
 	public String getContent() {
 		return this.content;
@@ -58,11 +60,11 @@ public class BlogTrail implements Serializable {
 		this.parentId = parentId;
 	}
 
-	public int getSubmittedBy() {
+	public ObjectId getSubmittedBy() {
 		return this.submittedBy;
 	}
 
-	public void setSubmittedBy(int submittedBy) {
+	public void setSubmittedBy(ObjectId submittedBy) {
 		this.submittedBy = submittedBy;
 	}
 
@@ -72,6 +74,14 @@ public class BlogTrail implements Serializable {
 
 	public void setSubmittedDate(Date submittedDate) {
 		this.submittedDate = submittedDate;
+	}
+
+	public ObjectId getBlogId() {
+		return blogId;
+	}
+
+	public void setBlogId(ObjectId blogId) {
+		this.blogId = blogId;
 	}
 
 }

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,85 +15,55 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * The persistent class for the blog database table.
  */
 
-@Document(collection="blog")
+@Document(collection = "blog")
 public class Blog implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private ObjectId blogId;
 
+	@Size(min=20)
 	private String content;
 
+	@Size(min=10)
 	private String description;
 
 	private int expiryPeriod;
 
 	private int isVerified;
 
-	private int submittedBy;
+	@NotNull
+	private ObjectId submittedBy;
 
+	@NotNull
 	private Date submittedDate;
 
 	private String type;
 
-	private int updatedBy;
+	private ObjectId updatedBy;
 
 	private Date updatedDate;
 
-	private List<ObjectId> blogTrails;
-
 	private List<String> tags;
-	
-	
 
 	public Blog() {
 	}
-	
-	public List<ObjectId> getBlogTrails() {
-		return blogTrails;
-	}
-
-	public void setBlogTrails(List<ObjectId> blogTrails) {
-		this.blogTrails = blogTrails;
-	}
-
-
 
 	public ObjectId getBlogId() {
 		return blogId;
 	}
 
-
-
 	public void setBlogId(ObjectId blogId) {
 		this.blogId = blogId;
 	}
-
-
-
-//	public List<BlogTrail> getBlogTrails() {
-//		return blogTrails;
-//	}
-//
-//
-//
-//	public void setBlogTrails(List<BlogTrail> blogTrails) {
-//		this.blogTrails = blogTrails;
-//	}
-
-
 
 	public List<String> getTags() {
 		return tags;
 	}
 
-
-
 	public void setTags(List<String> tags) {
 		this.tags = tags;
 	}
-
-
 
 	public String getContent() {
 		return this.content;
@@ -124,11 +97,11 @@ public class Blog implements Serializable {
 		this.isVerified = isVerified;
 	}
 
-	public int getSubmittedBy() {
+	public ObjectId getSubmittedBy() {
 		return this.submittedBy;
 	}
 
-	public void setSubmittedBy(int submittedBy) {
+	public void setSubmittedBy(ObjectId submittedBy) {
 		this.submittedBy = submittedBy;
 	}
 
@@ -148,11 +121,11 @@ public class Blog implements Serializable {
 		this.type = type;
 	}
 
-	public int getUpdatedBy() {
+	public ObjectId getUpdatedBy() {
 		return this.updatedBy;
 	}
 
-	public void setUpdatedBy(int updatedBy) {
+	public void setUpdatedBy(ObjectId updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -163,7 +136,4 @@ public class Blog implements Serializable {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-
-	
-
 }
