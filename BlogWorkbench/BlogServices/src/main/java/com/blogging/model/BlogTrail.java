@@ -26,7 +26,6 @@ public class BlogTrail implements Serializable {
 
 	private Date submittedDate;
 
-	private Blog blog;
 
 	public BlogTrail() {
 	}
@@ -73,14 +72,6 @@ public class BlogTrail implements Serializable {
 
 	public void setSubmittedDate(Date submittedDate) {
 		this.submittedDate = submittedDate;
-	}
-
-	public Blog getBlog() {
-		return this.blog;
-	}
-
-	public void setBlog(Blog blog) {
-		this.blog = blog;
 	}
 
 }

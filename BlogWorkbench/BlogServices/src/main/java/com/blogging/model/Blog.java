@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -38,26 +37,21 @@ public class Blog implements Serializable {
 
 	private Date updatedDate;
 
-//	@DBRef
-//	private List<BlogTrail> blogTrails;
+	private List<ObjectId> blogTrails;
 
 	private List<String> tags;
 	
-	private List<String> comments;
+	
 
 	public Blog() {
 	}
-
 	
-
-	public List<String> getComments() {
-		return comments;
+	public List<ObjectId> getBlogTrails() {
+		return blogTrails;
 	}
 
-
-
-	public void setComments(List<String> comments) {
-		this.comments = comments;
+	public void setBlogTrails(List<ObjectId> blogTrails) {
+		this.blogTrails = blogTrails;
 	}
 
 
