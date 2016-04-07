@@ -9,7 +9,6 @@ import org.bson.types.ObjectId;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,10 +19,10 @@ import com.blogging.model.Blog;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { BlogConfiguration.class })
 public class BlogRepositoryIT {
-	
+
 	@Resource
 	private BlogRepository blogRepository;
-	
+
 	private Blog createBlog() {
 		Blog blog = new Blog();
 		blog.setContent("This is Test Blog content.");
@@ -34,34 +33,27 @@ public class BlogRepositoryIT {
 	}
 
 	@Test
-	public void test() {
+	public void shouldSaveTheBlog() {
 		Blog blog = createBlog();
 		blogRepository.save(blog);
 		Assert.assertNotNull(blog);
 	}
-	
-	@Test
-	public void testEmptySubmitBy() {
+
+	@Test(expected = ConstraintViolationException.class)
+	public void shouldThrowAExceptionWhenSubmittedByIsNotPassed() {
 		Blog blog = createBlog();
 		blog.setSubmittedBy(null);
-		try{
-			blogRepository.save(blog);
-			Assert.fail();
-		}catch(ConstraintViolationException e){
-		}
+		blogRepository.save(blog);
+
 	}
-	
-	@Test
-	public void testEmptySubmitDate() {
+
+	@Test(expected = ConstraintViolationException.class)
+	public void shouldThrowAErrorWhenSubmittedDateIsNull() {
 		Blog blog = createBlog();
 		blog.setSubmittedDate(null);
-		try{
-			blogRepository.save(blog);
-			Assert.fail();
-		}catch(ConstraintViolationException e){
-		}
+		blogRepository.save(blog);
 	}
-	
+
 	@After
 	public void after() {
 		blogRepository.deleteAll();

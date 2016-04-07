@@ -22,25 +22,25 @@ public class UserRepositoryIT {
 	@Resource
 	private UserRepository userRepo;
 
-	private User user;
 
 	@Before
 	public void setUp() {
 		createUser();
 	}
 
-	private void createUser() {
-		user = new User();
+	private User createUser() {
+		User user = new User();
 		user.setCreatedDate(new Date());
 		user.setFirstName("TestName");
 		user.setEmail("abc@abc.com");
 		user.setLastName("TestLastName");
 		user.setPassword("test");
+		return user;
 	}
 
 	@Test
-	public void test() {
-		User savedUser = userRepo.save(user);
+	public void shouldSaveTheUser() {
+		User savedUser = userRepo.save(createUser());
 		Assert.assertNotNull(savedUser);
 		Assert.assertEquals("TestName", savedUser.getFirstName());
 	}
