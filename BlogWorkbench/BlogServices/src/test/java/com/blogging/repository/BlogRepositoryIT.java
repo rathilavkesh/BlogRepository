@@ -40,17 +40,24 @@ public class BlogRepositoryIT {
 	}
 
 	@Test(expected = ConstraintViolationException.class)
-	public void shouldThrowAExceptionWhenSubmittedByIsNotPassed() {
+	public void shouldThrowExceptionWhenSubmittedByIsNull() {
 		Blog blog = createBlog();
 		blog.setSubmittedBy(null);
 		blogRepository.save(blog);
-
 	}
 
 	@Test(expected = ConstraintViolationException.class)
-	public void shouldThrowAErrorWhenSubmittedDateIsNull() {
+	public void shouldThrowErrorWhenSubmittedDateIsNull() {
 		Blog blog = createBlog();
 		blog.setSubmittedDate(null);
+		blogRepository.save(blog);
+	}
+	
+	@Test(expected = ConstraintViolationException.class)
+	public void shouldThrowErrorWhenDescriptionAndNameIsNotValid() {
+		Blog blog = createBlog();
+		blog.setDescription("Descr");
+		blog.setContent("Content");
 		blogRepository.save(blog);
 	}
 
