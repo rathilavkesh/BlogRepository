@@ -8,7 +8,7 @@ import com.blogging.model.User;
 import com.blogging.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserManagerImpl implements UserManager {
 
 	@Resource
 	UserRepository UserRepository;
