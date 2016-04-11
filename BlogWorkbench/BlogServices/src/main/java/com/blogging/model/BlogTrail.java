@@ -21,9 +21,6 @@ public class BlogTrail implements Serializable {
 	private ObjectId blogTrailId;
 
 	private String content;
-	
-	@NotNull
-	private ObjectId blogId;
 
 	private int parentId;
 
@@ -75,13 +72,4 @@ public class BlogTrail implements Serializable {
 	public void setSubmittedDate(Date submittedDate) {
 		this.submittedDate = submittedDate;
 	}
-
-	public ObjectId getBlogId() {
-		return blogId;
-	}
-
-	public void setBlogId(ObjectId blogId) {
-		this.blogId = blogId;
-	}
-
 }

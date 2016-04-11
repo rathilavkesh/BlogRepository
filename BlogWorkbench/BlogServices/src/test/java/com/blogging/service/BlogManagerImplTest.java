@@ -1,9 +1,13 @@
 package com.blogging.service;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 import java.util.Date;
+
+
+
+
+import org.junit.Assert;
 
 import org.bson.types.ObjectId;
 import org.junit.Test;
@@ -42,6 +46,20 @@ public class BlogManagerImplTest {
 		Blog blog = createBlog();
 		blogService.createBlog(blog);
 		verify(blogRepository, times(1)).save(blog);
+	}
+	
+	@Test
+	public void shouldRetrieveTheBlogUsingTheId() {
+		Blog blog = createBlog();
+		when(blogRepository.findOne(any(ObjectId.class))).thenReturn(blog);
+		Blog retrievedBlog = blogService.retrieve(new ObjectId());
+		verify(blogRepository, times(1)).findOne(any(ObjectId.class));
+		Assert.assertEquals(retrievedBlog.getContent(), blog.getContent());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void shouldThrowAErrorWhenObjectIdPassedForRetreivalIsNull() {
+		blogService.retrieve(null);
 	}
 
 }

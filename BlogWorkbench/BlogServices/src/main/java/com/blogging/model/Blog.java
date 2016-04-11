@@ -45,9 +45,23 @@ public class Blog implements Serializable {
 	private Date updatedDate;
 
 	private List<String> tags;
+	
+	private List<ObjectId> blogTrailIds;
 
 	public Blog() {
 	}
+
+	public List<ObjectId> getBlogTrailIds() {
+		return blogTrailIds;
+	}
+
+
+
+	public void setBlogTrailIds(List<ObjectId> blogTrailIds) {
+		this.blogTrailIds = blogTrailIds;
+	}
+
+
 
 	public ObjectId getBlogId() {
 		return blogId;

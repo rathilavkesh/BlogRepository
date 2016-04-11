@@ -60,6 +60,14 @@ public class BlogRepositoryIT {
 		blog.setContent("Content");
 		blogRepository.save(blog);
 	}
+	
+	@Test
+	public void shouldGetTheSavedBlog() {
+		Blog blog = createBlog();
+		blogRepository.save(blog);
+		Blog savedBlog = blogRepository.findOne(blog.getBlogId());
+		Assert.assertEquals(savedBlog.getContent(), blog.getContent());
+	}
 
 	@After
 	public void after() {
