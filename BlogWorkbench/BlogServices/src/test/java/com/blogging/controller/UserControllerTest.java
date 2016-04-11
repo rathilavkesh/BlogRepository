@@ -30,7 +30,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.blogging.model.Country;
 import com.blogging.model.User;
 import com.blogging.model.UserDetail;
-import com.blogging.service.UserService;
+import com.blogging.service.UserManager;
 import com.blogging.utils.TestUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,7 +41,7 @@ public class UserControllerTest {
 	private MockMvc mockMvc;
 
 	@Resource
-	private UserService userService;
+	private UserManager userService;
 
 	@Resource
 	private WebApplicationContext webApplicationContext;
@@ -92,8 +92,8 @@ public class UserControllerTest {
 	public static class Config {
 
 		@Bean
-		public UserService userService() {
-			return Mockito.mock(UserService.class);
+		public UserManager userService() {
+			return Mockito.mock(UserManager.class);
 		}
 
 		@Bean

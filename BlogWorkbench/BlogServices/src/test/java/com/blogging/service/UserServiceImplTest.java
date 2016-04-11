@@ -19,7 +19,7 @@ public class UserServiceImplTest {
 	private UserRepository userRepository;
 
 	@InjectMocks
-	private UserService userService = new UserServiceImpl();
+	private UserManager userService = new UserManagerImpl();
 
 	@Test
 	public void shouldCallUserRepositoryToStoreTheUser() {
