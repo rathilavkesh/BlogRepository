@@ -6,12 +6,17 @@ import org.bson.types.ObjectId;
 import org.springframework.util.Assert;
 
 import com.blogging.model.Blog;
+import com.blogging.model.BlogTrail;
 import com.blogging.repository.BlogRepository;
+import com.blogging.repository.BlogTrailRepository;
 
 public class BlogManagerImpl implements BlogManager{
 	
 	@Resource
 	private BlogRepository blogRepo;
+	
+	@Resource
+	private BlogTrailRepository trailRepo;
 
 	@Override
 	public void createBlog(Blog blog) {
@@ -22,6 +27,12 @@ public class BlogManagerImpl implements BlogManager{
 	public Blog retrieve(ObjectId blogId) {
 		Assert.notNull(blogId);
 		return blogRepo.findOne(blogId);
+	}
+
+	@Override
+	public void storeBlogTrail(BlogTrail trail) {
+		trailRepo.save(trail);
+		blogRepo.findOne(trail.getBlogId());
 	}
 
 }

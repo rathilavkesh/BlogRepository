@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.blogging.BlogConfiguration;
 import com.blogging.model.Blog;
+import com.blogging.utils.BlogDataGenerator;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { BlogConfiguration.class })

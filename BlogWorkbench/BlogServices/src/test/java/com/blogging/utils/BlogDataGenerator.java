@@ -1,4 +1,4 @@
-package com.blogging.repository;
+package com.blogging.utils;
 
 import java.util.Date;
 
@@ -23,6 +23,7 @@ public class BlogDataGenerator {
 		trail.setContent("Test Trail");
 		trail.setSubmittedBy(new ObjectId());
 		trail.setSubmittedDate(new Date());
+		trail.setBlogId(new ObjectId());
 		return trail;
 	}
 

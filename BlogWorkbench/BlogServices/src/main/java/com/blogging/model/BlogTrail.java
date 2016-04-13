@@ -9,6 +9,10 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 /**
  * The persistent class for the blog_trail database table.
  * 
@@ -23,6 +27,9 @@ public class BlogTrail implements Serializable {
 	private String content;
 
 	private int parentId;
+	
+	@NotNull
+	private ObjectId blogId;
 
 	@NotNull
 	private ObjectId submittedBy;
@@ -31,6 +38,14 @@ public class BlogTrail implements Serializable {
 	private Date submittedDate;
 
 	public BlogTrail() {
+	}
+
+	public ObjectId getBlogId() {
+		return blogId;
+	}
+
+	public void setBlogId(ObjectId blogId) {
+		this.blogId = blogId;
 	}
 
 	public ObjectId getBlogTrailId() {
