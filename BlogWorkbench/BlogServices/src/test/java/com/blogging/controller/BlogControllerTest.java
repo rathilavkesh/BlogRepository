@@ -1,9 +1,7 @@
 package com.blogging.controller;
 
-import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Date;
@@ -29,7 +27,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.blogging.model.Blog;
 import com.blogging.service.BlogManager;
 import com.blogging.utils.TestUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { BlogControllerTest.Config.class })
