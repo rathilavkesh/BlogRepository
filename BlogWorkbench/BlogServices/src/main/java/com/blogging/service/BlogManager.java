@@ -1,5 +1,7 @@
 package com.blogging.service;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 
 import com.blogging.model.Blog;
@@ -12,5 +14,7 @@ public interface BlogManager {
 	Blog retrieve(ObjectId objectId);
 
 	void storeBlogTrail(BlogTrail trail);
+
+	List<BlogTrail> retrieveTrails(List<ObjectId> trailIds);
 
 }

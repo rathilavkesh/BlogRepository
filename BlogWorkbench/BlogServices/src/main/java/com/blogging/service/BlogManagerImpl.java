@@ -1,5 +1,7 @@
 package com.blogging.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.bson.types.ObjectId;
@@ -33,6 +35,11 @@ public class BlogManagerImpl implements BlogManager{
 	public void storeBlogTrail(BlogTrail trail) {
 		trailRepo.save(trail);
 		blogRepo.findOne(trail.getBlogId());
+	}
+
+	@Override
+	public List<BlogTrail> retrieveTrails(List<ObjectId> trailIds) {
+		return null;
 	}
 
 }

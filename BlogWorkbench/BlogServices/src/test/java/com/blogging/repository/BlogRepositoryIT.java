@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.blogging.BlogConfiguration;
 import com.blogging.model.Blog;
+import com.blogging.model.BlogTrail;
 import com.blogging.utils.BlogDataGenerator;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -57,6 +58,8 @@ public class BlogRepositoryIT {
 		Blog savedBlog = blogRepository.findOne(blog.getBlogId());
 		Assert.assertEquals(savedBlog.getContent(), blog.getContent());
 	}
+	
+	
 
 	@After
 	public void after() {
