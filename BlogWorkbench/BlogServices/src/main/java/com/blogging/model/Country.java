@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 /**
  * The persistent class for the country database table.
@@ -15,6 +16,7 @@ public class Country implements Serializable {
 	@Id
 	private ObjectId countryId;
 
+	@Indexed(unique=true)
 	private String name;
 
 	public Country() {

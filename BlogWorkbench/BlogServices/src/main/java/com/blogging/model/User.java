@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -27,6 +28,7 @@ public class User implements Serializable {
 	
 	private String password;
 
+	@Indexed(unique=true)
 	private String email;
 
 	private byte isActive;
