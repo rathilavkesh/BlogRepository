@@ -1,23 +1,34 @@
-<div class="container">
-	<div class="alert alert-danger alert-dismissible fade in" ng-if="errorMsg"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>{{errorMsg}}</div>
-	<form>
-		<div class="form-group">
-	    	<label for="name">NAME</label>
-	    	<input type="text" class="form-control" id="name" placeholder="Todo name" ng-model ="name">
-	  	</div>
-	  	<div class="form-group">
-	    	<label for="description">DESCRIPTION</label>
-	    	<textarea class="form-control" rows="3" placeholder="Todo description"ng-model="description"></textarea>
-	  	</div>
-	  	<label for="dueDate">DUEDATE</label>
-	  	<datepicker date-format="yyyy-MM-dd" selector="form-control">
-	    	<div class="input-group">
-	        	<input class="form-control dueDate" placeholder="Choose a date" ng-model="dueDate"/>
-	        	<span class="input-group-addon">
-	        		<i class="fa fa-lg fa-calendar"></i>
-	        	</span>
-	    	</div>
-		</datepicker>
-	  	<button type="submit" class="btn btn-success pull-right margin-top-20" ng-click = "addToDo()">ADD</button>
-	</form>	
-</div>	
+<md-dialog aria-label="Add Blog" ng-cloak class="width-100">
+    <form class="width-100">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add Blog</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-content layout="column" layout-xs="column" layout-padding>
+                <div flex="100">
+                    <md-input-container class="md-block">
+                        <label>Title</label>
+                        <input ng-model="blog.title">
+                    </md-input-container>
+                </div>
+                <div flex="100">
+                    <md-input-container class="md-block">
+                        <label>Content</label>
+                        <input ng-model="blog.content">
+                    </md-input-container>
+                </div>
+            </md-content>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-warn md-raised" ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button class="md-primary md-raised" ng-click="submit()" style="margin-right:20px;">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
