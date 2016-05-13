@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoApp')
-	.controller('MainCtrl', ['$mdSidenav', '$mdDialog', '$timeout', '$log', function($mdSidenav, $mdDialog, $timeout, $log) {
+	.controller('MainCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$log', function($scope, $mdSidenav, $mdDialog, $timeout, $log) {
 
 
 		var self = this;
@@ -38,6 +38,7 @@ angular.module('todoApp')
 		}
 
 
+
 		function openAddBlogPage(ev) {
 			$mdDialog.show({
 					controller: DialogController,
@@ -46,23 +47,24 @@ angular.module('todoApp')
 					targetEvent: ev,
 					clickOutsideToClose: true
 				})
-				.then(function(answer) {
-					$scope.status = 'You said the information was "' + answer + '".';
+				.then(function() {
+
 				}, function() {
-					$scope.status = 'You cancelled the dialog.';
+
 				});
-			$scope.$watch(function() {
-				return $mdMedia('xs') || $mdMedia('sm');
-			}, function(wantsFullScreen) {
-				$scope.customFullscreen = (wantsFullScreen === true);
-			});
 		}
 
 		function DialogController($scope, $mdDialog) {
+			$scope.textAngularOptions = [
+				['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+				['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+				['charcount']
+			];
+
 			$scope.hide = function() {
 				$mdDialog.hide();
 			};
-			
+
 			$scope.submit = function(answer) {
 				$mdDialog.hide();
 			};
