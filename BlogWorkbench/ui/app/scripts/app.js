@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.sortable',
-    'ngMaterial'
+    'ngMaterial',
+    'textAngular'
   ])
   .config(function($routeProvider, $mdThemingProvider) {
     $mdThemingProvider.theme('default')

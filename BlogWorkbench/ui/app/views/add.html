@@ -14,10 +14,8 @@
                     </md-input-container>
                 </div>
                 <div flex="100">
-                    <md-input-container class="md-block">
-                        <label>Content</label>
-                        <input ng-model="blog.content">
-                    </md-input-container>
+                    <text-angular name="description" id="description" ta-toolbar="textAngularOptions" required="true" ng-model="post.description" ta-max-text="2000" ta-min-text="50">
+                    </text-angular>
                 </div>
             </md-content>
         </md-dialog-content>
