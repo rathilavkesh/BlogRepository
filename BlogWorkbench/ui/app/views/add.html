@@ -1,4 +1,4 @@
-<md-dialog aria-label="Add Blog" ng-cloak class="width-100">
+<md-dialog aria-label="Add Blog" ng-cloak class="width-100" ng-controller="AddBlogCtrl">
     <form class="width-100">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -14,7 +14,7 @@
                     </md-input-container>
                 </div>
                 <div flex="100">
-                    <text-angular name="description" id="description" ta-toolbar="textAngularOptions" required="true" ng-model="post.description" ta-max-text="2000" ta-min-text="50">
+                    <text-angular name="description" id="description" ta-toolbar="textAngularOptions" required="true" ng-model="blog.description" ta-max-text="2000" ta-min-text="50">
                     </text-angular>
                 </div>
             </md-content>
@@ -24,7 +24,7 @@
             <md-button class="md-warn md-raised" ng-click="hide()">
                 Cancel
             </md-button>
-            <md-button class="md-primary md-raised" ng-click="submit()" style="margin-right:20px;">
+            <md-button class="md-primary md-raised" ng-click="create()" style="margin-right:20px;">
                 Save
             </md-button>
         </md-dialog-actions>

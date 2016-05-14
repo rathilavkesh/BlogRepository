@@ -42,7 +42,8 @@ describe('Controller: AddBlogCtrl', function() {
     createController();
     
     scope.userId = '55ed90730631f2622794a6c5';
-    scope.content = 'TestBlog';
+    scope.blog= {};
+    scope.blog.content = 'TestBlog';
     scope.create();
     expect(BlogService.create).toHaveBeenCalled();
 
