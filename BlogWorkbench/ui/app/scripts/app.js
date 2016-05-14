@@ -8,8 +8,10 @@
  *
  * Main module of the application.
  */
+
+console.log('loading module');
 angular
-  .module('todoApp', [
+  .module('blogApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -26,7 +28,7 @@ angular
       .accentPalette('red');
     $routeProvider
       .when('/', {
-        templateUrl: 'views/test.html'
+        templateUrl: 'views/landing.html'
       })
       .otherwise({
         redirectTo: '/'

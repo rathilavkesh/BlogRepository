@@ -36,28 +36,28 @@
     </style>
 </head>
 
-<body ng-app="todoApp" layout="column" ng-controller="MainCtrl as main" ng-cloak>
+<body ng-app="blogApp" layout="column" ng-controller="MainCtrl" ng-cloak>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <!-- Add your site or application content here -->
     <md-toolbar layout="row">
-        <md-button class="menu" hide-gt-sm ng-click="main.toggleMenu()" aria-label="Show side menu" class="md-raised">
+        <md-button class="menu" hide-gt-sm ng-click="toggleMenu()" aria-label="Show side menu" class="md-raised">
             <i class="fa fa-cog fa-3" aria-hidden="true"></i>
         </md-button>
         <h1>Blog!!!</h1>
         <span flex></span>
        
-        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="main.openAddBlogPage($event)">
+        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="openAddBlogPage($event)">
             Create
         </md-button>
        
     </md-toolbar>
     <div flex layout="row">
-        <md-sidenav ng-click="main.toggleMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
+        <md-sidenav ng-click="toggleMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
             <md-list>
-                <md-list-item ng-repeat="it in main.subjects">
-                    <md-button ng-click="main.selectLanguage(it)" ng-class="{'selected' : it === main.selected }">
+                <md-list-item ng-repeat="it in subjects">
+                    <md-button ng-click="selectLanguage(it)" ng-class="{'selected' : it === main.selected }">
                         <i class="fa fa-folder-open fa-3" aria-hidden="true"></i> {{it.name}}
                     </md-button>
                 </md-list-item>
@@ -115,6 +115,7 @@
 
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-message.js"></script>
 </body>
 
 </html>

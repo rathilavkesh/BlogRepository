@@ -1,26 +1,18 @@
 'use strict';
 
-angular.module('todoApp')
+console.log('loading controller');
+angular.module('blogApp')
 	.controller('MainCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$log', function($scope, $mdSidenav, $mdDialog, $timeout, $log) {
 
-
-		var self = this;
-		self.selected = "";
-		self.subjects = [{
+		$scope.selected = "";
+		$scope.subjects = [{
 			'name': 'Java'
 		}, {
 			'name': 'Javascript'
 		}];
-		self.toggleMenu = toggleMenu;
-		self.openAddBlogPage = openAddBlogPage;
+		$scope.toggleMenu = toggleMenu;
+		$scope.openAddBlogPage = openAddBlogPage;
 
-		// *********************************
-		// Internal methods
-		// *********************************
-
-		/**
-		 * Hide or Show the 'left' sideNav area
-		 */
 		function toggleMenu() {
 			$mdSidenav('left').toggle();
 		}
@@ -29,17 +21,9 @@ angular.module('todoApp')
 			self.selected = selectLang;
 		}
 
-		/**
-		 * Select the current avatars
-		 * @param menuId
-		 */
-		function selectUser(user) {
-			self.selected = angular.isNumber(user) ? $scope.users[user] : user;
-		}
-
-
-
+	
 		function openAddBlogPage(ev) {
+			console.log('openAddBlogPage called');
 			$mdDialog.show({
 					controller: DialogController,
 					templateUrl: 'views/add.html',
