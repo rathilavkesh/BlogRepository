@@ -19,7 +19,6 @@ describe('Service: BlogService ', function() {
 
     it('should save the blog properly', function() {
         httpBackend.whenPOST(ENV.SERVICE_ROOT + '/blog/create').respond(function(requestMethod, requestUrl, data, headers) {
-            console.log('Mock called!!!!');
             expect(data).toBeDefined();
             return [200, {
                 'success': 'postcreated'
