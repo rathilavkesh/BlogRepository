@@ -2,14 +2,13 @@
 
 /**
  * @ngdoc overview
- * @name todoApp
+ * @name blogApp
  * @description
- * # todoApp
+ * # blogApp
  *
  * Main module of the application.
  */
 
-console.log('loading module');
 angular
   .module('blogApp', [
     'ngAnimate',
@@ -20,9 +19,11 @@ angular
     'ngTouch',
     'ui.sortable',
     'ngMaterial',
-    'textAngular'
+    'textAngular',
+    'blogApp.config'
   ])
-  .config(function($routeProvider, $mdThemingProvider) {
+  .config(function($routeProvider, $mdThemingProvider, $httpProvider) {
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')
       .accentPalette('red');

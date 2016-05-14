@@ -1,6 +1,6 @@
 'use strict';
 
-console.log('loading controller');
+
 angular.module('blogApp')
 	.controller('MainCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$log', function($scope, $mdSidenav, $mdDialog, $timeout, $log) {
 
