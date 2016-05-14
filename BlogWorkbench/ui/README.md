@@ -7,7 +7,7 @@ version 0.12.1.
 
 install node
 
-Once node is installed you will get the node packeage manage : npm
+Once node is installed you will get the node packeage manager : npm
 
 do npm install bower -g
 
