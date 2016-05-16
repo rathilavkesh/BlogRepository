@@ -19,7 +19,7 @@ public class BlogController {
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/blog/add", produces="application/json", consumes="application/json", method=RequestMethod.POST)
-    public void save(@RequestBody Blog blog) {
-        blogManager.createBlog(blog);
+    public Blog save(@RequestBody Blog blog) {
+        return blogManager.createBlog(blog);
     }
 }

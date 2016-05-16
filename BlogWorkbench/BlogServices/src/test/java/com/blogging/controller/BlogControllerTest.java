@@ -3,6 +3,7 @@ package com.blogging.controller;
 import static org.mockito.Matchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.when;
 
 import java.util.Date;
 
@@ -51,7 +52,7 @@ public class BlogControllerTest {
 	@Test
 	public void shouldSaveTheBlog() throws Exception {
 		Blog blog = generateBlog();
-		Mockito.doNothing().when(blogManager).createBlog(any(Blog.class));
+		when(blogManager.createBlog(any(Blog.class))).thenReturn(blog);
 		byte[] arr = TestUtils.serialize(blog);
 		mockMvc.perform(
 				post("/blog/add").content(arr).contentType(

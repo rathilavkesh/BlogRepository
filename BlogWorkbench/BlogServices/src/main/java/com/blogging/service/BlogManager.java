@@ -9,7 +9,7 @@ import com.blogging.model.BlogTrail;
 
 public interface BlogManager {
 
-	void createBlog(Blog blog);
+	Blog createBlog(Blog blog);
 
 	Blog retrieve(ObjectId objectId);
 

@@ -23,8 +23,8 @@ public class BlogManagerImpl implements BlogManager{
 	private BlogTrailRepository trailRepo;
 
 	@Override
-	public void createBlog(Blog blog) {
-		blogRepo.save(blog);
+	public Blog createBlog(Blog blog) {
+		return blogRepo.save(blog);
 	}
 
 	@Override
