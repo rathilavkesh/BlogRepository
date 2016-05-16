@@ -39,12 +39,7 @@ angular.module('blogApp')
 		}
 
 		function DialogController($scope, $mdDialog) {
-			$scope.textAngularOptions = [
-				['bold', 'italics', 'underline', 'strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
-				['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
-				['charcount']
-			];
-
+			
 			$scope.hide = function() {
 				$mdDialog.hide();
 			};

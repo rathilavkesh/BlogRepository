@@ -456,7 +456,7 @@ module.exports = function(grunt) {
         constants: {
           ENV: {
             NAME: 'dev',
-            SERVICE_ROOT: 'http://localhost:8080/'
+            SERVICE_ROOT: 'http://localhost:8082/blogs'
           }
         }
       }

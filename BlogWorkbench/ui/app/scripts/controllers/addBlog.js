@@ -2,10 +2,15 @@
 
 
 angular.module('blogApp')
-	.controller('AddBlogCtrl', ['$scope', 'BlogService',  function($scope, BlogService) {
+	.controller('AddBlogCtrl', ['$scope', 'BlogService', function($scope, BlogService) {
 
 		$scope.userId = '55ed90730631f2622794a6c5';
-		$scope.blog= {};
+		$scope.blog = {
+			'title': '',
+			'content': ''
+		};
+
+
 
 		$scope.create = function() {
 			var user = $scope.userId;

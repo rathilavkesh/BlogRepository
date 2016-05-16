@@ -1,5 +1,5 @@
 <md-dialog aria-label="Add Blog" ng-cloak class="width-100" ng-controller="AddBlogCtrl">
-    <form class="width-100">
+    
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Add Blog</h2>
@@ -14,8 +14,9 @@
                     </md-input-container>
                 </div>
                 <div flex="100">
-                    <text-angular name="description" id="description" ta-toolbar="textAngularOptions" required="true" ng-model="blog.description" ta-max-text="2000" ta-min-text="50">
+                    <text-angular name="content" id="content" required="true" ng-model="blog.content" ta-max-text="2000" ta-min-text="50">
                     </text-angular>
+                    {{blog.content}}
                 </div>
             </md-content>
         </md-dialog-content>
@@ -28,5 +29,5 @@
                 Save
             </md-button>
         </md-dialog-actions>
-    </form>
+    
 </md-dialog>

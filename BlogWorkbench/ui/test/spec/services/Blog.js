@@ -18,7 +18,7 @@ describe('Service: BlogService ', function() {
     
 
     it('should save the blog properly', function() {
-        httpBackend.whenPOST(ENV.SERVICE_ROOT + '/blog/create').respond(function(requestMethod, requestUrl, data, headers) {
+        httpBackend.whenPOST(ENV.SERVICE_ROOT + '/blog/add').respond(function(requestMethod, requestUrl, data, headers) {
             expect(data).toBeDefined();
             return [200, {
                 'success': 'postcreated'
