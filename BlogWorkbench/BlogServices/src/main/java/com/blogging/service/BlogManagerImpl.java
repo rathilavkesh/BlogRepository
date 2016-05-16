@@ -35,8 +35,11 @@ public class BlogManagerImpl implements BlogManager{
 
 	@Override
 	public void storeBlogTrail(BlogTrail trail) {
-		trailRepo.save(trail);
-		blogRepo.findOne(trail.getBlogId());
+		BlogTrail savedTrail = trailRepo.save(trail);
+		Blog blog = blogRepo.findOne(trail.getBlogId());
+		blog.getBlogTrailIds().add(savedTrail.getBlogTrailId());
+		blogRepo.save(blog);
+		
 	}
 
 	@Override

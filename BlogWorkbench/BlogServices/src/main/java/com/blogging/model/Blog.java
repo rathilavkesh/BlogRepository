@@ -1,6 +1,7 @@
 package com.blogging.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class Blog implements Serializable {
 
 	private List<String> tags;
 	
-	private List<ObjectId> blogTrailIds;
+	private List<ObjectId> blogTrailIds = new ArrayList<>();
 
 	public Blog() {
 	}

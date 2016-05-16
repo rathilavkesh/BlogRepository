@@ -5,9 +5,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bson.types.ObjectId;
 import org.junit.Assert;
 import org.junit.Test;
@@ -36,11 +33,6 @@ public class BlogManagerImplTest {
 	private BlogManager blogService = new BlogManagerImpl();
 	
 	@Test
-	public void shouldStoreTheTrailForTheBlog() {
-		
-	}
-	
-	@Test
 	public void shouldStoreTheBlog() {
 		Blog blog = BlogDataGenerator.createBlog();
 		blogService.createBlog(blog);
@@ -64,17 +56,14 @@ public class BlogManagerImplTest {
 	@Test
 	public void shouldStoreBlogTrail() {
 		BlogTrail trail = BlogDataGenerator.createTrail();
+		Blog blog = BlogDataGenerator.createBlog();
+		when(blogTrailRepo.save(any(BlogTrail.class))).thenReturn(trail);
+		when(blogRepository.findOne(any(ObjectId.class))).thenReturn(blog);
 		blogService.storeBlogTrail(trail);
 		verify(blogTrailRepo, times(1)).save(trail);
 		verify(blogRepository, times(1)).findOne(any(ObjectId.class));
 		verify(blogRepository, times(1)).save(any(Blog.class));
 	}
 	
-//	@Test
-//	public void shouldRetrieveTheBlogTrailsBasedOnBlogId() {
-//		
-//		blogService.retrieveTrails(trailIds);
-//		when(blogRepository.find)
-//	}
 
 }
