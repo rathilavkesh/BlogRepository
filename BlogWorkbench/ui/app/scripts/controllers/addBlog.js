@@ -10,6 +10,8 @@ angular.module('blogApp')
 			'content': ''
 		};
 
+		$scope.tags = [];
+
 		$scope.create = function() {
 			var user = $scope.userId;
 			var content = $scope.blog.content;
