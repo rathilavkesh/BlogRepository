@@ -54,6 +54,7 @@ module.exports = function(config) {
       "app/scripts/constant.js",
       "app/scripts/controllers/**/*.js",
       "app/scripts/services/**/*.js",
+      "app/scripts/factories/**/*.js",
       "test/spec/**/*.js"
     ],
 
