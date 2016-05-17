@@ -4,7 +4,7 @@
 angular.module('blogApp')
 	.controller('AddBlogCtrl', ['$scope', 'BlogService', 'ToasterFactory', function($scope, BlogService, ToasterFactory) {
 
-		$scope.userId = '55ed90730631f2622794a6c5';
+		$scope.userId = '55ed90730631f2622794a6c6';
 		$scope.blog = {
 			'title': '',
 			'content': ''

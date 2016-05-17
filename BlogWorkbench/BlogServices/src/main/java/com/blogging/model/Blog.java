@@ -23,10 +23,10 @@ public class Blog implements Serializable {
 	@Id
 	private ObjectId blogId;
 
-	@Size(min=20)
+	@Size(min=200)
 	private String content;
 
-	@Size(min=10)
+	
 	private String description;
 
 	private int expiryPeriod;
