@@ -25,11 +25,14 @@ angular
   .config(function($routeProvider, $mdThemingProvider, $httpProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $mdThemingProvider.theme('default')
-      .primaryPalette('brown')
+      .primaryPalette('blue')
       .accentPalette('red');
     $routeProvider
       .when('/', {
         templateUrl: 'views/landing.html'
+      })
+      .when('/addblog', {
+        templateUrl: 'views/add.html'
       })
       .otherwise({
         redirectTo: '/'

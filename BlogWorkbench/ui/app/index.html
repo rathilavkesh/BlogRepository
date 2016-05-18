@@ -42,10 +42,10 @@
     <![endif]-->
     <!-- Add your site or application content here -->
     <md-toolbar layout="row">
-        <md-button class="menu" hide-gt-sm ng-click="toggleMenu()" aria-label="Show side menu" class="md-raised">
+        <md-button ng-if="!hideSideMenu" class="menu" hide-gt-sm ng-click="toggleMenu()" aria-label="Show side menu" class="md-raised">
             <i class="fa fa-cog fa-3" aria-hidden="true"></i>
         </md-button>
-        <h1>Blog!!!</h1>
+        <h1 ng-click="goToHome()">Blog!!!</h1>
         <span flex></span>
        
         <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="openAddBlogPage($event)">
@@ -53,8 +53,8 @@
         </md-button>
        
     </md-toolbar>
-    <div flex layout="row">
-        <md-sidenav ng-click="toggleMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
+    <div flex layout="row" >
+        <md-sidenav ng-if="!hideSideMenu" ng-click="toggleMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
             <md-list>
                 <md-list-item ng-repeat="it in subjects">
                     <md-button ng-click="selectLanguage(it)" ng-class="{'selected' : it === main.selected }">
@@ -107,6 +107,7 @@
     <script src="scripts/controllers/addBlog.js"></script>
     <script src="scripts/services/blog.js"></script>
     <script src="scripts/factories/toaster.js"></script> 
+    <script src="scripts/factories/navigation.js"></script> 
     <!-- endbuild -->
 
     <script src="bower_components/angular-material/angular-material.js"></script>

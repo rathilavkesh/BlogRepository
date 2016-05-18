@@ -2,16 +2,16 @@
 
 
 angular.module('blogApp')
-	.controller('MainCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$timeout', '$log', function($scope, $mdSidenav, $mdDialog, $timeout, $log) {
+	.controller('MainCtrl', ['$scope', '$mdSidenav', '$timeout', '$log', '$location', 'NavigationFactory', function($scope, $mdSidenav, $timeout, $log, $location, NavigationFactory) {
 
 		$scope.selected = "";
+		$scope.hideSideMenu = false;
 		$scope.subjects = [{
 			'name': 'Java'
 		}, {
 			'name': 'Javascript'
 		}];
-		$scope.toggleMenu = toggleMenu;
-		$scope.openAddBlogPage = openAddBlogPage;
+
 
 		function toggleMenu() {
 			$mdSidenav('left').toggle();
@@ -21,32 +21,21 @@ angular.module('blogApp')
 			self.selected = selectLang;
 		}
 
-	
-		function openAddBlogPage(ev) {
-			console.log('openAddBlogPage called');
-			$mdDialog.show({
-					controller: DialogController,
-					templateUrl: 'views/add.html',
-					parent: angular.element(document.body),
-					targetEvent: ev,
-					clickOutsideToClose: true
-				})
-				.then(function() {
 
-				}, function() {
-
-				});
+		function openAddBlogPage() {
+			$scope.hideSideMenu = true;
+			NavigationFactory.goToAddBlog();
 		}
 
-		function DialogController($scope, $mdDialog) {
-			
-			$scope.hide = function() {
-				$mdDialog.hide();
-			};
-
-			$scope.submit = function(answer) {
-				$mdDialog.hide();
-			};
+		function goToHome() {
+			$scope.hideSideMenu = false;
+			NavigationFactory.goToHome();
 		}
+
+		$scope.toggleMenu = toggleMenu;
+		$scope.openAddBlogPage = openAddBlogPage;
+		$scope.goToHome = goToHome;
+
+
 
 	}]);

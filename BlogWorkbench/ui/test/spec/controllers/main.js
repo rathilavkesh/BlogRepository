@@ -4,24 +4,24 @@ describe('Controller: MainCtrl', function() {
 
 
 
-  var scope, controller, mockMdSideNav, rootScope, mockMdDialog;
+  var scope, controller, mockMdSideNav, rootScope, location, NavigationFactory;
 
   beforeEach(module('blogApp'));
 
-  beforeEach(inject(function($rootScope, $controller) {
+  beforeEach(inject(function($rootScope, $controller, $location, _NavigationFactory_) {
     rootScope = $rootScope;
     scope = rootScope.$new();
     mockMdSideNav = function() {};
-    mockMdDialog = {};
     controller = $controller;
+    location = $location;
+    NavigationFactory = _NavigationFactory_;
   }));
 
 
   function createController() {
     controller('MainCtrl', {
       '$scope': scope,
-      '$mdSidenav': mockMdSideNav,
-      '$mdDialog': mockMdDialog
+      '$mdSidenav': mockMdSideNav
     });
   }
 
@@ -40,22 +40,21 @@ describe('Controller: MainCtrl', function() {
     expect(mockToggleObj.toggle).toHaveBeenCalled();
   });
 
-  it('should open the dialog for adding the blog when create is clicked', function() {
-    mockMdDialog = {
-      'show':  function(params) {
-        expect(params).toBeDefined();
-        return {
-          'then': function(success, error) {
-            success();
-          }
-        }
-      }
-    };
-    spyOn(mockMdDialog, 'show').and.callThrough();
+  it('should take to add blog page for adding the blog when create is clicked', function() {
+    spyOn(NavigationFactory, 'goToAddBlog');
     createController();
     scope.openAddBlogPage({});
-    expect(mockMdDialog.show).toHaveBeenCalled();
+    expect(NavigationFactory.goToAddBlog).toHaveBeenCalled();
+    expect(scope.hideSideMenu).toBeTruthy();
+  });
 
+
+  it('should navigate to home page', function() {
+    spyOn(NavigationFactory, 'goToHome');
+    createController();
+    scope.goToHome({});
+    expect(NavigationFactory.goToHome).toHaveBeenCalled();
+    expect(scope.hideSideMenu).toBeFalsy();
   });
 
 
