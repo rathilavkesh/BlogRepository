@@ -20,7 +20,8 @@ angular
     'ui.sortable',
     'ngMaterial',
     'textAngular',
-    'blogApp.config'
+    'blogApp.config',
+    'blogApp.secrets'//This comes from the secrets file which will never be checked in!!!!
   ])
   .config(function($routeProvider, $mdThemingProvider, $httpProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];

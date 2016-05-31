@@ -4,7 +4,7 @@ describe('Controller: AddBlogCtrl', function() {
 
 
 
-  var scope, controller, BlogService, rootScope, ToasterFactory;
+  var scope, controller, BlogService, rootScope, ToasterFactory, mdDialog;
 
   beforeEach(module('blogApp'));
 
@@ -14,6 +14,7 @@ describe('Controller: AddBlogCtrl', function() {
     controller = $controller;
     BlogService = _BlogService_;
     ToasterFactory = _ToasterFactory_;
+    
   }));
 
 
@@ -51,6 +52,9 @@ describe('Controller: AddBlogCtrl', function() {
     expect(BlogService.create).toHaveBeenCalled();
     expect(ToasterFactory.showSimpleToast).toHaveBeenCalledWith('Blog saved successfully');
   });
+
+
+ 
 
 
 });

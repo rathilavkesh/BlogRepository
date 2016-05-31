@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css"> -->
     <style type="text/css">
     /**
@@ -50,6 +51,10 @@
        
         <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="openAddBlogPage($event)">
             Create
+        </md-button>
+
+        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="openLoginDialog()">
+            Login
         </md-button>
        
     </md-toolbar>
@@ -102,9 +107,11 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/constant.js"></script>
+    <script src="scripts/secrets.js"></script>
     <script src="scripts/config.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/addBlog.js"></script>
+    <script src="scripts/controllers/login.js"></script>
     <script src="scripts/services/blog.js"></script>
     <script src="scripts/factories/toaster.js"></script> 
     <script src="scripts/factories/navigation.js"></script> 

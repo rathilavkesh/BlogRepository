@@ -4,17 +4,18 @@ describe('Controller: MainCtrl', function() {
 
 
 
-  var scope, controller, mockMdSideNav, rootScope, location, NavigationFactory;
+  var scope, controller, mockMdSideNav, rootScope, location, NavigationFactory, mdDialog;
 
   beforeEach(module('blogApp'));
 
-  beforeEach(inject(function($rootScope, $controller, $location, _NavigationFactory_) {
+  beforeEach(inject(function($rootScope, $controller, $location, _NavigationFactory_, $mdDialog) {
     rootScope = $rootScope;
     scope = rootScope.$new();
     mockMdSideNav = function() {};
     controller = $controller;
     location = $location;
     NavigationFactory = _NavigationFactory_;
+    mdDialog = $mdDialog;
   }));
 
 
@@ -55,6 +56,13 @@ describe('Controller: MainCtrl', function() {
     scope.goToHome({});
     expect(NavigationFactory.goToHome).toHaveBeenCalled();
     expect(scope.hideSideMenu).toBeFalsy();
+  });
+
+  it('should open the login dialog', function() {
+    spyOn(mdDialog, 'show');
+    createController();
+    scope.openLoginDialog();
+    expect(mdDialog.show).toHaveBeenCalled();
   });
 
 

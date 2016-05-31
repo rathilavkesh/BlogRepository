@@ -2,7 +2,7 @@
 
 
 angular.module('blogApp')
-	.controller('MainCtrl', ['$scope', '$mdSidenav', '$timeout', '$log', '$location', 'NavigationFactory', function($scope, $mdSidenav, $timeout, $log, $location, NavigationFactory) {
+	.controller('MainCtrl', ['$scope', '$mdSidenav', '$timeout', '$log', '$location', 'NavigationFactory', '$mdDialog', function($scope, $mdSidenav, $timeout, $log, $location, NavigationFactory, $mdDialog) {
 
 		$scope.selected = "";
 		$scope.hideSideMenu = false;
@@ -32,9 +32,21 @@ angular.module('blogApp')
 			NavigationFactory.goToHome();
 		}
 
+		function openLoginDialog(ev) {
+			$mdDialog.show({
+				controller: 'LoginCtrl',
+				templateUrl: 'views/login.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true
+			});
+
+		}
+
 		$scope.toggleMenu = toggleMenu;
 		$scope.openAddBlogPage = openAddBlogPage;
 		$scope.goToHome = goToHome;
+		$scope.openLoginDialog = openLoginDialog;
 
 
 
