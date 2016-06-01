@@ -4,15 +4,16 @@ describe('Controller: MainCtrl', function() {
 
 
 
-  var scope, controller, mdDialog, rootScope;
+  var scope, controller, mdDialog, rootScope, facebook;
 
   beforeEach(module('blogApp'));
 
-  beforeEach(inject(function($rootScope, $controller, $location, _NavigationFactory_, $mdDialog) {
+  beforeEach(inject(function($rootScope, $controller, $location, _NavigationFactory_, $mdDialog, _facebook_) {
     rootScope = $rootScope;
     scope = rootScope.$new();
     controller = $controller;
     mdDialog = $mdDialog;
+    facebook = _facebook_;
   }));
 
 
@@ -31,6 +32,20 @@ describe('Controller: MainCtrl', function() {
     expect(mdDialog.hide).toHaveBeenCalled();
   });
 
+  it('should call facebook for login', function() {
 
+    spyOn(facebook, 'loginToFacebook').and.callFake(function() {
+      return {
+        'then': function(success) {
+          success({});
+        }
+      };
+    });
+
+    createController();
+    scope.loginToFacebook();
+    expect(facebook.loginToFacebook).toHaveBeenCalled();
+
+  });
 
 });
