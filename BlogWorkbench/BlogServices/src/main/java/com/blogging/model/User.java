@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -22,13 +24,18 @@ public class User implements Serializable {
 	@Id
 	private ObjectId userId;
 	
+	private String thirdPartyId;
+	
 	private String firstName;
 	
 	private String lastName;
 	
 	private String password;
+	
+	@NotNull
+	private LoginType loginType;
 
-	@Indexed(unique=true)
+	@Indexed
 	private String email;
 
 	private byte isActive;
@@ -44,7 +51,23 @@ public class User implements Serializable {
 	public User() {
 	}
 
+
+	public enum LoginType {
+		FB;
+	}
 	
+	public String getThirdPartyId() {
+		return thirdPartyId;
+	}
+
+
+
+	public void setThirdPartyId(String thirdPartyId) {
+		this.thirdPartyId = thirdPartyId;
+	}
+
+
+
 	public ObjectId getUserId() {
 		return userId;
 	}
