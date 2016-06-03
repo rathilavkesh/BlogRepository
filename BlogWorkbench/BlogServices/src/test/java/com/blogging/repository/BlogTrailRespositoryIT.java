@@ -34,7 +34,7 @@ public class BlogTrailRespositoryIT {
 	@Test
 	public void shouldStoreTheTrailInDatabase() {
 		// Build
-		BlogTrail trail = BlogDataGenerator.createTrail();
+		BlogTrail trail = BlogDataGenerator.Generator.createTrail();
 		// Execute
 		BlogTrail savedTrail = trailRepo.save(trail);
 		// Verify
@@ -44,8 +44,8 @@ public class BlogTrailRespositoryIT {
 	@Test
 	public void shouldGetTheTrailBasedonIds() {
 		// Build
-		Blog blog = BlogDataGenerator.createBlog();
-		BlogTrail trail = BlogDataGenerator.createTrail();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
+		BlogTrail trail = BlogDataGenerator.Generator.createTrail();
 		BlogTrail savedTrail = trailRepo.save(trail);
 		blog.setBlogTrailIds(Arrays.asList(savedTrail.getBlogTrailId()));
 		blogRepo.save(blog);
@@ -62,13 +62,13 @@ public class BlogTrailRespositoryIT {
 	@Test
 	public void shouldRetrievethiTrailsBasedOnBlogId() {
 		// Build
-		Blog blog = BlogDataGenerator.createBlog();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		Blog savedBlog = blogRepo.save(blog);
-		BlogTrail trail = BlogDataGenerator.createTrail();
+		BlogTrail trail = BlogDataGenerator.Generator.createTrail();
 		trail.setSubmittedDate(new Date());
 		trail.setBlogId(savedBlog.getBlogId());
 		BlogTrail savedTrail = trailRepo.save(trail);
-		BlogTrail trail1 = BlogDataGenerator.createTrail();
+		BlogTrail trail1 = BlogDataGenerator.Generator.createTrail();
 		trail1.setSubmittedDate(new Date());
 		trail1.setBlogId(savedBlog.getBlogId());
 		BlogTrail savedTrail1 = trailRepo.save(trail1);

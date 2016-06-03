@@ -34,14 +34,14 @@ public class BlogManagerImplTest {
 	
 	@Test
 	public void shouldStoreTheBlog() {
-		Blog blog = BlogDataGenerator.createBlog();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		blogService.createBlog(blog);
 		verify(blogRepository, times(1)).save(blog);
 	}
 	
 	@Test
 	public void shouldRetrieveTheBlogUsingTheId() {
-		Blog blog = BlogDataGenerator.createBlog();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		when(blogRepository.findOne(any(ObjectId.class))).thenReturn(blog);
 		Blog retrievedBlog = blogService.retrieve(new ObjectId());
 		verify(blogRepository, times(1)).findOne(any(ObjectId.class));
@@ -55,8 +55,8 @@ public class BlogManagerImplTest {
 	
 	@Test
 	public void shouldStoreBlogTrail() {
-		BlogTrail trail = BlogDataGenerator.createTrail();
-		Blog blog = BlogDataGenerator.createBlog();
+		BlogTrail trail = BlogDataGenerator.Generator.createTrail();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		when(blogTrailRepo.save(any(BlogTrail.class))).thenReturn(trail);
 		when(blogRepository.findOne(any(ObjectId.class))).thenReturn(blog);
 		blogService.storeBlogTrail(trail);

@@ -47,7 +47,7 @@ public class BlogTrailControllerTest {
 	
 	@Test
 	public void shouldStoreTheBlogTrail() throws Exception {
-		BlogTrail blogTrail = BlogDataGenerator.createTrail();
+		BlogTrail blogTrail = BlogDataGenerator.Generator.createTrail();
 		Mockito.doNothing().when(blogManager).storeBlogTrail(any(BlogTrail.class));
 		byte[] arr = TestUtils.serialize(blogTrail);
 		mockMvc.perform(

@@ -24,28 +24,28 @@ public class BlogRepositoryIT {
 	
 	@Test
 	public void shouldSaveTheBlog() {
-		Blog blog = BlogDataGenerator.createBlog();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		blogRepository.save(blog);
 		Assert.assertNotNull(blog);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void shouldThrowExceptionWhenSubmittedByIsNull() {
-		Blog blog = BlogDataGenerator.createBlog();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		blog.setSubmittedBy(null);
 		blogRepository.save(blog);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void shouldThrowErrorWhenSubmittedDateIsNull() {
-		Blog blog = BlogDataGenerator.createBlog();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		blog.setSubmittedDate(null);
 		blogRepository.save(blog);
 	}
 	
 	@Test(expected = ConstraintViolationException.class)
 	public void shouldThrowErrorWhenDescriptionAndNameIsNotValid() {
-		Blog blog = BlogDataGenerator.createBlog();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		blog.setDescription("Descr");
 		blog.setContent("Content");
 		blogRepository.save(blog);
@@ -53,7 +53,7 @@ public class BlogRepositoryIT {
 	
 	@Test
 	public void shouldGetTheSavedBlog() {
-		Blog blog = BlogDataGenerator.createBlog();
+		Blog blog = BlogDataGenerator.Generator.createBlog();
 		blogRepository.save(blog);
 		Blog savedBlog = blogRepository.findOne(blog.getBlogId());
 		Assert.assertEquals(savedBlog.getContent(), blog.getContent());
