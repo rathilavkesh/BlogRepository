@@ -16,7 +16,6 @@ public class Country implements Serializable {
 	@Id
 	private ObjectId countryId;
 
-	@Indexed(unique=true)
 	private String name;
 
 	public Country() {

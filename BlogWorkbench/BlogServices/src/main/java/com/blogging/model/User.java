@@ -11,6 +11,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 
 /**
  * The persistent class for the user database table.
@@ -56,6 +60,20 @@ public class User implements Serializable {
 		FB;
 	}
 	
+	
+	
+	public LoginType getLoginType() {
+		return loginType;
+	}
+
+
+
+	public void setLoginType(LoginType loginType) {
+		this.loginType = loginType;
+	}
+
+
+
 	public String getThirdPartyId() {
 		return thirdPartyId;
 	}
