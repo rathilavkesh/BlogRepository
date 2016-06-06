@@ -1,0 +1,92 @@
+<!doctype html>
+<html ng-app="blogApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Blog UI APP</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    
+    <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css"> -->
+    <style type="text/css">
+    /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+    
+    [ng\:cloak],
+    [ng-cloak],
+    [data-ng-cloak],
+    [x-ng-cloak],
+    .ng-cloak,
+    .x-ng-cloak {
+        display: none !important;
+    }
+    </style>
+
+    <!-- inject-vendor:css -->
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+
+<body layout="column" ng-controller="homePageCtrl" ng-cloak>
+    
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <md-toolbar layout="row">
+        <md-button ng-if="!hideSideMenu" class="menu md-raised" hide-gt-sm ng-click="toggleMenu()" aria-label="Show side menu">
+            <i class="fa fa-cog fa-3" aria-hidden="true"></i>
+        </md-button>
+        <h1 ng-click="goToHome()">Blog!!!</h1>
+        <span flex></span>
+       
+        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="openAddBlogPage($event)">
+            Create
+        </md-button>
+
+        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="openLoginDialog()">
+            Login
+        </md-button>
+       
+    </md-toolbar>
+
+
+    <div flex layout="row" >
+        <md-sidenav ng-if="!hideSideMenu" ng-click="toggleMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
+            <md-list>
+                <md-list-item ng-repeat="it in subjects">
+                    <md-button ng-click="selectLanguage(it)" ng-class="{'selected' : it === main.selected }">
+                        <i class="fa fa-folder-open fa-3" aria-hidden="true"></i> {{it.name}}
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-content flex id="content">
+            <div ng-view=""></div>
+        </md-content>
+    </div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+    ! function(A, n, g, u, l, a, r) {
+        A.GoogleAnalyticsObject = l, A[l] = A[l] || function() {
+                (A[l].q = A[l].q || []).push(arguments)
+            }, A[l].l = +new Date, a = n.createElement(g),
+            r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+    }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+    </script>
+
+    <!-- inject-vendor:js -->
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <!-- endinject -->
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<div>
+  <button type="button" class="pull-right btn btn-primary margin-2" ng-click="addTodo()">ADD TODO</button>
+</div>
+<div>
+  <button type="button" class="pull-right btn btn-info margin-2" ng-click="refresh()"><i>Refresh</i></button>
+</div>
+<div class="container">
+  <div class="alert alert-danger alert-dismissible fade in" ng-if="errorMsg">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    {{errorMsg}}
+  </div>
+  <div class="alert alert-success alert-dismissible fade in" ng-if="successMsg">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    {{successMsg}}
+  </div>
+  <span class="heading" ng-if="toDo.length>=1">TODO LIST({{totalItems}})</span>
+  <table class="table table-hover" ng-if="toDo.length>=1">
+    <thead>
+      <tr>
+        <th>
+          NAME
+        </th>
+        <th>
+          DESCRIPTION
+        </th>
+        <th>
+          DUE DATE
+        </th>
+      </tr>
+    </thead>
+    <tbody ui-sortable ng-model="toDo" >
+      <tr ng-repeat="todo in toDo ">
+        <td ng-click="update($index)">
+          <edit-in-place value="todo.Name"></edit-in-place>
+        </td>
+        <td ng-click="update($index)">
+          <edit-in-place value="todo.Description"></edit-in-place>
+        </td>
+        <td ng-click="update($index)">
+          <edit-in-place value="todo.dueDate | date:'MM/dd/yyyy'"></edit-in-place>
+        </td>
+        <td>
+          <button type="button" class="close pull-right" aria-hidden="true" ng-click="deleteTodo(todo)">&times;</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert alert-success alert-dismissible fade in margin-top-40" ng-show="noToDos">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+    NO TODO's FOUND
+  </div>
+</div>
+<div>
+  <button type="button" class="btn btn-warning align-center" ng-click="loadToDos()" ng-if="!noMoreToDos">LOAD MORE</button>
+</div>

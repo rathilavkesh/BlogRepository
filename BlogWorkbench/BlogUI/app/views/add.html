@@ -1,0 +1,31 @@
+<div layout="column" layout-padding ng-controller="AddBlogCtrl">
+    <div flex="100">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="md-title">Add Blog</h2>
+            </div>
+        </md-toolbar>
+    </div>
+    <md-content flex layout-padding>
+        <div flex="100">
+            <md-input-container class="md-block">
+                <label>Title</label>
+                <input ng-model="blog.title">
+            </md-input-container>
+        </div>
+        <div flex="100">
+            <text-angular name="content" id="content" required="true" ng-model="blog.content" ta-max-text="2000" ta-min-text="50">
+            </text-angular>
+            {{blog.content}}
+        </div>
+        <div flex="100">
+            <h2 class="md-title">Add Tags related to the Blog</h2>
+            <md-chips ng-model="tags"></md-chips>
+        </div>
+    </md-content>
+    <div flex="100">
+        <md-button class="md-primary md-raised pull-right" ng-click="create()">
+            Save
+        </md-button>
+    </div>
+</div>
