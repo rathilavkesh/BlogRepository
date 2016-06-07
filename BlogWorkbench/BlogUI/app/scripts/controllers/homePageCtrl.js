@@ -4,7 +4,7 @@
 (function() {
 
 	angular.module('blogApp')
-		.controller('homePageCtrl', ['$scope', '$mdSidenav', '$timeout', '$log', '$location', 'NavigationFactory', '$mdDialog', function($scope, $mdSidenav, $timeout, $log, $location, NavigationFactory, $mdDialog) {
+		.controller('HomePageCtrl', ['$scope', '$mdSidenav', '$timeout', '$log', '$location', 'NavigationFactory', '$mdDialog', function($scope, $mdSidenav, $timeout, $log, $location, NavigationFactory, $mdDialog) {
 
 			$scope.selected = "";
 			$scope.hideSideMenu = false;

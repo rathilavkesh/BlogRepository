@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-	angular.module('blogApp').factory('UserConverterFactory', ['FacebookToBlogUserFactory', function(FacebookToBlogUserFactory) {
+	angular.module('blogApp').factory('UserConverterFactory', ['FacebookToBlogUserConverterFactory', function(FacebookToBlogUserFactory) {
 		return {
 			'generateConverter': function(type) {
 				switch(type) {

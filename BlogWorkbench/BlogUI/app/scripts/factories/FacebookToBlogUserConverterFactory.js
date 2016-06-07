@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-	angular.module('blogApp').factory('FacebookToBlogUserFactory', [function() {
+	angular.module('blogApp').factory('FacebookToBlogUserConverterFactory', [function() {
 
 		var Converter = function() {};
 		Converter.prototype.convert = function(fbUser) {

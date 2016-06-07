@@ -40,6 +40,9 @@
     "gulp-util": "^3.0.7",
     "htmlhint-stylish": "^1.0.3",
     "jshint": "^2.9.2",
+    "karma": "^0.13.22",
+    "karma-jasmine": "*",
+    "karma-phantomjs-launcher": "*",
     "merge-stream": "^1.0.0",
     "path": "^0.12.7",
     "run-sequence": "^1.2.1"

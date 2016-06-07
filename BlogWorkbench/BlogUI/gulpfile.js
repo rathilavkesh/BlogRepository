@@ -35,6 +35,18 @@ const paths = config.paths;
 
 var developement = false;
 
+var Server = require('karma').Server;
+
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  new Server({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
 
 //Cleaning build and target folder
 gulp.task('clean-all', function() {
