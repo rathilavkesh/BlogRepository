@@ -1,40 +1,39 @@
-'use strict';
-
-
 (function() {
+	'use strict';
+
 
 	angular.module('blogApp')
 		.controller('HomePageCtrl', ['$scope', '$mdSidenav', '$timeout', '$log', '$location', 'NavigationFactory', '$mdDialog', function($scope, $mdSidenav, $timeout, $log, $location, NavigationFactory, $mdDialog) {
 
-			$scope.selected = "";
-			$scope.hideSideMenu = false;
-			$scope.subjects = [{
+			var vm = this;
+			vm.selected = "";
+			vm.hideSideMenu = false;
+			vm.subjects = [{
 				'name': 'Java'
 			}, {
 				'name': 'Javascript'
 			}];
 
 
-			function toggleMenu() {
+			vm.toggleMenu = function() {
 				$mdSidenav('left').toggle();
-			}
+			};
 
-			function selectLanguage(selectLang) {
+			vm.selectLanguage = function(selectLang) {
 				self.selected = selectLang;
-			}
+			};
 
-
-			function openAddBlogPage() {
+			vm.openAddBlogPage = function() {
 				$scope.hideSideMenu = true;
 				NavigationFactory.goToAddBlog();
-			}
+			};
 
-			function goToHome() {
+			vm.goToHome = function() {
 				$scope.hideSideMenu = false;
 				NavigationFactory.goToHome();
-			}
+			};
 
-			function openLoginDialog(ev) {
+			vm.openLoginDialog = function(ev) {
 				$mdDialog.show({
 					controller: 'LoginCtrl',
 					templateUrl: 'partial/views/login.html',
@@ -42,13 +41,7 @@
 					targetEvent: ev,
 					clickOutsideToClose: true
 				});
-
-			}
-
-			$scope.toggleMenu = toggleMenu;
-			$scope.openAddBlogPage = openAddBlogPage;
-			$scope.goToHome = goToHome;
-			$scope.openLoginDialog = openLoginDialog;
+			};			
 	}]);	
 
 })();

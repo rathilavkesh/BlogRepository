@@ -1,6 +1,6 @@
-'use strict';
-
 (function() {
+	'use strict';
+
 	angular.module('blogApp')
 		.controller('LoginCtrl', ['$scope', '$mdDialog', 'facebook', 'UserConverterFactory', 'UserService', function($scope, $mdDialog, facebook, UserConverterFactory, UserService) {
 

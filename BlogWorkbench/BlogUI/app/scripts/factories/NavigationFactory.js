@@ -1,6 +1,6 @@
-'use strict';
-
 (function() {
+	'use strict';
+
 	angular.module('blogApp').factory('NavigationFactory', ['$location', function($location) {
 		return {
 			'goToHome': function() {

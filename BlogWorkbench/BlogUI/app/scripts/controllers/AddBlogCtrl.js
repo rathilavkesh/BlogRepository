@@ -1,6 +1,7 @@
-'use strict';
-
 (function() {
+	'use strict';
+
+
 	angular.module('blogApp')
 		.controller('AddBlogCtrl', ['$scope', 'BlogService', 'ToasterFactory', function($scope, BlogService, ToasterFactory) {
 
