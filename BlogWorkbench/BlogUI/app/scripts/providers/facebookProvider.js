@@ -1,17 +1,19 @@
  /*global FB*/
- 'use strict';
-
  (function() {
+    'use strict';
+    
      angular.module('blogApp').provider('facebook', function facebookProvider() {
          
-         this.$get = ['$q', function facebookFactory($q) {
+         this.$get = ['$q', '$log', function facebookFactory($q, $log) {
              return {
                  'loginToFacebook': function() {
                      var deferred = $q.defer();
                      FB.login(function(response) {
                          if (response.authResponse) {
                              var accessToken = FB.getAuthResponse().accessToken;
-                             FB.api('/me', function(response) {
+                             FB.api('/me', {
+                                    fields: 'last_name,first_name,email'
+                             },  function(response) {
                                  response.accessToken = accessToken;
                                  deferred.resolve(response);
                              });
@@ -45,11 +47,11 @@
                                      break;
                              }
                          }, function(err) {
-                             console.error(err);
+                             $log.error(err);
                              deferred.reject('Error in logging into facebook');
                          });
                      } catch (err) {
-                         console.error(err);
+                         $log.error(err);
                          deferred.reject('Error in logging into facebook');
                      }
                      return deferred.promise;
@@ -57,7 +59,7 @@
                  'logOut': function() {
                      var deferred = $q.defer();
                      FB.logout(function(response) {
-                         console.debug('Facebook user logged out successfully ' + JSON.stringify(response));
+                         $log.debug('Facebook user logged out successfully ' + JSON.stringify(response));
                          deferred.resolve('success');
                      });
                      return deferred.promise;
@@ -88,7 +90,7 @@
              js.id = id;
              js.src = '//connect.facebook.net/en_US/sdk.js';
              fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
+         }($window.document, 'script', 'facebook-jssdk'));
 
      }]);
 

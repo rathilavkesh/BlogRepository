@@ -1,25 +1,12 @@
 <!doctype html>
-<html>
+<html ng-app="blogApp">
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Blog UI APP</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
     <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css"> -->
     <style type="text/css">
     /**
@@ -35,34 +22,44 @@
         display: none !important;
     }
     </style>
+
+    <!-- inject-vendor:css -->
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <!-- endinject -->
 </head>
 
-<body ng-app="blogApp" layout="column" ng-controller="MainCtrl" ng-cloak>
+<body layout="column" ng-controller="homePageCtrl as vm" ng-cloak>
+    
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
     <!-- Add your site or application content here -->
     <md-toolbar layout="row">
-        <md-button ng-if="!hideSideMenu" class="menu" hide-gt-sm ng-click="toggleMenu()" aria-label="Show side menu" class="md-raised">
+        <md-button ng-if="!vm.hideSideMenu" class="menu md-raised" hide-gt-sm ng-click="vm.toggleMenu()" aria-label="Show side menu">
             <i class="fa fa-cog fa-3" aria-hidden="true"></i>
         </md-button>
-        <h1 ng-click="goToHome()">Blog!!!</h1>
+        <h1 ng-click="vm.goToHome()">Blog!!!</h1>
         <span flex></span>
        
-        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="openAddBlogPage($event)">
+        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="vm.openAddBlogPage($event)">
             Create
         </md-button>
 
-        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="openLoginDialog()">
+        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="vm.openLoginDialog()">
             Login
         </md-button>
        
     </md-toolbar>
+
+
     <div flex layout="row" >
-        <md-sidenav ng-if="!hideSideMenu" ng-click="toggleMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
+        <md-sidenav ng-if="!vm.hideSideMenu" ng-click="vm.toggleMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
             <md-list>
-                <md-list-item ng-repeat="it in subjects">
-                    <md-button ng-click="selectLanguage(it)" ng-class="{'selected' : it === main.selected }">
+                <md-list-item ng-repeat="it in vm.subjects">
+                    <md-button ng-click="vm.selectLanguage(it)" ng-class="{'selected' : it === main.selected }">
                         <i class="fa fa-folder-open fa-3" aria-hidden="true"></i> {{it.name}}
                     </md-button>
                 </md-list-item>
@@ -84,47 +81,12 @@
     ga('create', 'UA-XXXXX-X');
     ga('send', 'pageview');
     </script>
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src='bower_components/jquery/dist/jquery.js'></script>
-    <script src='bower_components/angular/angular.js'></script>
-    <script src='bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js'></script>
-    <script src='bower_components/angular-animate/angular-animate.js'></script>
-    <script src='bower_components/angular-cookies/angular-cookies.js'></script>
-    <script src='bower_components/angular-resource/angular-resource.js'></script>
-    <script src='bower_components/angular-route/angular-route.js'></script>
-    <script src='bower_components/angular-sanitize/angular-sanitize.js'></script>
-    <script src='bower_components/angular-touch/angular-touch.js'></script>
-    <script src='bower_components/jquery-ui/jquery-ui.js'></script>
-    <script src='bower_components/angular-ui-sortable/sortable.js'></script>
-    <script src='bower_components/moment/moment.js'></script>
-    <script src='bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js'></script>
-    <script src='bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'></script>
-    <script src='bower_components/angularjs-datepicker/dist/angular-datepicker.min.js'></script>
-    <script src='bower_components/angular-messages/angular-messages.js'></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    
-    <script src="scripts/secrets.js"></script>
-    <script src="scripts/config.js"></script>
-    <script src="scripts/providers/FacebookProvider.js"></script>
-    <script src="scripts/controllers/HomePageCtrl.js"></script>
-    <script src="scripts/controllers/AddBlogCtrl.js"></script>
-    <script src="scripts/controllers/LoginCtrl.js"></script>
-    <script src="scripts/services/BlogService.js"></script>
-    <script src="scripts/services/UserService.js"></script>
-    <script src="scripts/factories/ToasterFactory.js"></script>  
-    <script src="scripts/factories/NavigationFactory.js"></script> 
-    <script src="scripts/factories/UserConverterFactory.js"></script> 
-    <script src="scripts/factories/FacebookToBlogUserConverterFactory.js.js"></script> 
-    <!-- endbuild -->
 
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular-sanitize.min.js'></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js'></script>
+    <!-- inject-vendor:js -->
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <!-- endinject -->
 </body>
 
 </html>
