@@ -3,7 +3,7 @@
 
 
 	angular.module('blogApp')
-		.controller('HomePageCtrl', ['$scope', '$mdSidenav', '$timeout', '$log', '$location', 'NavigationFactory', '$mdDialog', function($scope, $mdSidenav, $timeout, $log, $location, NavigationFactory, $mdDialog) {
+		.controller('HomePageCtrl', ['$scope', '$window', '$mdSidenav', '$timeout', '$log', '$location', 'NavigationFactory', '$mdDialog', function($scope, $window, $mdSidenav, $timeout, $log, $location, NavigationFactory, $mdDialog) {
 
 			var vm = this;
 			vm.selected = "";
@@ -20,16 +20,16 @@
 			};
 
 			vm.selectLanguage = function(selectLang) {
-				self.selected = selectLang;
+				vm.selected = selectLang;
 			};
 
 			vm.openAddBlogPage = function() {
-				$scope.hideSideMenu = true;
+				vm.hideSideMenu = true;
 				NavigationFactory.goToAddBlog();
 			};
 
 			vm.goToHome = function() {
-				$scope.hideSideMenu = false;
+				vm.hideSideMenu = false;
 				NavigationFactory.goToHome();
 			};
 
@@ -37,7 +37,7 @@
 				$mdDialog.show({
 					controller: 'LoginCtrl',
 					templateUrl: 'partial/views/login.html',
-					parent: angular.element(document.body),
+					parent: angular.element($window.document.body),
 					targetEvent: ev,
 					clickOutsideToClose: true
 				});

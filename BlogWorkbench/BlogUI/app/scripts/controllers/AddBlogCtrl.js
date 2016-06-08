@@ -29,7 +29,7 @@
 					ToasterFactory.showSimpleToast('Blog saved successfully');
 				});
 
-			}
+			};
 
 		}]);
 
