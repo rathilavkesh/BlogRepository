@@ -37,17 +37,6 @@ var developement = false;
 
 var Server = require('karma').Server;
 
-/**
- * Run test once and exit
- */
-gulp.task('test', function (done) {
-  new Server({
-    configFile: __dirname + '/test/karma.conf.js',
-    singleRun: true
-  }, done).start();
-});
-
-
 //Cleaning build and target folder
 gulp.task('clean-all', function() {
 	log(colors.blue('Clean build and target folder'));
@@ -98,10 +87,12 @@ gulp.task('appJSHint', function(){
 	log(colors.blue('Validating JS'));
 	return gulp.src(paths.appScripts, {cwd: bases.src}) // set source		
 		.pipe(jshint())  //JS Hint
+		.pipe(jshint.reporter('jshint-stylish'))		
 		.pipe(jshint.reporter('gulp-jshint-html-reporter', {
 	      filename: bases.reportFolder + 'jshint-output.html',
 	      createMissingFolders : true  
-	    })); 
+	    }))
+	    .pipe(jshint.reporter('fail')); 
 });
 
 //App html hint
@@ -242,6 +233,16 @@ gulp.task('copy-images', function(){
   		.pipe(gulp.dest(bases.dist+'images'));
 });
 
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  new Server({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
 // Minify images
 gulp.task('deploy-to-target', function(){
 	log(colors.blue('Depoly files to target folder'));
@@ -259,34 +260,82 @@ gulp.task('connectDev', function () {
   });
 });
 
-
-gulp.task('default', function(callback) {
-  	runSequence('clean-all',
+/**
+ * Build Project 
+ **/
+gulp.task('build-project', function (callback) {
+  runSequence('clean-all',
 			['generateVendorJS', 'generateVendorCSS', 'appJSHint', 'appHtmlHint'],
           	['appSass'],
           	'angularTemplateCache',
           	['concatApplicationJS', 'concatApplicationCSS'],
           	'rev-and-inject',
           	['delete-temp-folder', 'copy-bower-files', 'copy-i18-files', 'copy-images'],
-          	'deploy-to-target',
-          	'connectDev',
           	callback);
 });
 
-
-gulp.task('debug', function(callback) {
-	developement = true;
-  	runSequence('clean-all',
-  			  ['generateVendorJS', 'generateVendorCSS', 'appJSHint', 'appHtmlHint'],
-              ['appSass'],
-              'angularTemplateCache',
-              ['concatApplicationJS', 'concatApplicationCSS'],
-              'rev-and-inject',
-              ['delete-temp-folder', 'copy-bower-files', 'copy-i18-files', 'copy-images'],
-              'deploy-to-target',
-              'connectDev',
-              callback);
+/**
+ * Build Project and deploy changes
+ **/
+gulp.task('redeploy-changes', function (callback) {
+	log(colors.green('Redeploying changes'));
+  	runSequence('build-project',
+				'deploy-to-target',
+          		callback);
 });
+
+/**
+ * Add watcher for change JS file
+ **/
+gulp.task('run-change-watcher', function (callback) {
+  	gulp.watch(bases.src+'**/*.js', ['redeploy-changes']);
+});
+
+
+/**
+ * Build Project and start local server
+ **/
+gulp.task('local-build', function (callback) {
+	log(colors.green('Build Project and start local server'));
+  	runSequence('build-project',			
+          		'deploy-to-target',
+          		'connectDev', 
+          		callback);
+});
+
+
+/**
+ * Build Project, start local server and enable watcher for change file
+ **/
+gulp.task('local-build-with-watcher', function (callback) {
+	log(colors.green('Build Project, start local server and enable watcher for change file'));
+  	runSequence('local-build',			          		
+          		'run-change-watcher',
+          		callback);
+});
+
+
+/**
+ * Build Project for local debug
+ **/
+gulp.task('local-debug', function (callback) {
+	log(colors.green('Build Project for local debug'));
+	developement = true;
+  	runSequence('local-build', 
+          		callback);
+});
+
+
+/**
+ * Build Project for local debug with watcher enable
+ **/
+gulp.task('local-debug-with-watcher', function (callback) {
+	developement = true;
+  	runSequence('lb-with-watcher', 
+          		callback);
+});
+
+gulp.task('default', ['build-project']);
 
 
 /**
