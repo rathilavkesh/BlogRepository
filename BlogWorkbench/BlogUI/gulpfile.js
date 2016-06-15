@@ -289,6 +289,7 @@ gulp.task('redeploy-changes', function (callback) {
  **/
 gulp.task('run-change-watcher', function (callback) {
   	gulp.watch(bases.src+'**/*.js', ['redeploy-changes']);
+  	gulp.watch(bases.src+'**/*.html', ['redeploy-changes']);
 });
 
 
@@ -331,7 +332,7 @@ gulp.task('local-debug', function (callback) {
  **/
 gulp.task('local-debug-with-watcher', function (callback) {
 	developement = true;
-  	runSequence('lb-with-watcher', 
+  	runSequence('local-build-with-watcher', 
           		callback);
 });
 
