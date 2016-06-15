@@ -23,6 +23,8 @@
     }
     </style>
 
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css"/>
+
     <!-- inject-vendor:css -->
     <!-- endinject -->
 
@@ -30,45 +32,41 @@
     <!-- endinject -->
 </head>
 
-<body layout="column" ng-controller="HomePageCtrl as vm" ng-cloak>
+<body layout="column" ng-cloak>
     
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <md-toolbar layout="row">
-        <md-button ng-if="!vm.hideSideMenu" class="menu md-raised" hide-gt-sm ng-click="vm.toggleMenu()" aria-label="Show side menu">
-            <i class="fa fa-cog fa-3" aria-hidden="true"></i>
-        </md-button>
-        <h1 ng-click="vm.goToHome()">Blog!!!</h1>
-        <span flex></span>
-       
-        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="vm.openAddBlogPage($event)">
-            Create
-        </md-button>
+    <md-toolbar layout="column" class="padding-5" ng-controller="HeaderCtrl as vm">
+        <div layout="row" layout-align="center stretch" class="blog-menubar">
+            <!-- <md-button ng-if="!vm.hideSideMenu" class="md-icon-button" hide-gt-sm  ng-click="vm.toggleMenu()" aria-label="Show side menu">
+               <ng-md-icon icon="menu" style="fill: lightgray"></ng-md-icon>             
+            </md-button> -->
+            <div layout="row" layout-align="center center" class="padding-left-5">
+                <div ng-click="vm.goToHome()">Blog!!!</div>
+            </div> 
 
-        <md-button class="md-raised md-primary md-button md-ink-ripple" ng-click="vm.openLoginDialog()">
-            Login
-        </md-button>
-       
+             <span flex></span>  
+
+             <div layout="row" layout-align="center center">
+                <md-button class="md-icon-button" title="Post Question" ng-click="vm.openAddBlogPage($event)">
+                    <ng-md-icon icon="add_circle_outline" style="fill: white"></ng-md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button" title="Login" ng-click="vm.openLoginDialog()" >
+                    <ng-md-icon icon="login" style="fill: lightgreen"></ng-md-icon> 
+                </md-button>    
+            </div>         
+        </div>
     </md-toolbar>
 
 
-    <div flex layout="row" >
-        <md-sidenav ng-if="!vm.hideSideMenu" ng-click="vm.toggleMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
-            <md-list>
-                <md-list-item ng-repeat="it in vm.subjects">
-                    <md-button ng-click="vm.selectLanguage(it)" ng-class="{'selected' : it === main.selected }">
-                        <i class="fa fa-folder-open fa-3" aria-hidden="true"></i> {{it.name}}
-                    </md-button>
-                </md-list-item>
-            </md-list>
-        </md-sidenav>
-        <md-content flex id="content">
-            <div ng-view=""></div>
-        </md-content>
+    <div flex layout="row" layout-wrap layout-fill class="blog-content">
+        <div ng-view=""></div>
     </div>
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
     ! function(A, n, g, u, l, a, r) {

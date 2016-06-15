@@ -3,6 +3,11 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+*{
+  font-family: 'Varela Round', sans-serif;
+  font-size:15px;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -12,7 +17,63 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 
 body {
   padding: 0;
+  background-color:#f1f1f1;
+  height:auto;
 }
+
+.blog-menubar, .blog-content {
+      width:100%;
+      margin:0px auto;
+}
+
+//=========== Side Menu Section : Start
+.sideMenu{
+  border: 2px solid #07c;
+  margin-bottom:10px;
+
+  .menu-header{
+    background-color:#07c;
+    text-align:center;
+    padding:5px;
+    font-size:15px;
+    color:white;
+  }
+
+  .menu-content{
+    padding:5px;
+  }
+}
+
+.sideMenu.noMarginBottom{
+    margin-bottom:0px;
+}
+
+//=========== Side Menu Section : End
+
+@mixin padding($padding) { padding: $padding;}
+@mixin padding-left($padding) { padding-left: $padding;}
+@mixin padding-right($padding) { padding-right: $padding;}
+@mixin padding-top($padding) { padding-top: $padding;}
+@mixin padding-bottom($padding) { padding-bottom: $padding;}
+
+.padding-0{@include padding(0px);}
+.padding-left-0{@include padding-left(0px);}
+.padding-right-0{@include padding-right(0px);}
+.padding-top-0{@include padding-top(0px);}
+.padding-bottom-0{@include padding-bottom(0px);}
+
+.padding-5{@include padding(5px);}
+.padding-left-5{@include padding-left(5px);}
+.padding-right-5{@include padding-right(5px);}
+.padding-top-5{@include padding-top(5px);}
+.padding-bottom-5{@include padding-bottom(5px);}
+
+.padding-10{@include padding(10px);}
+.padding-left-10{@include padding-left(10px);}
+.padding-right-10{@include padding-right(10px);}
+.padding-top-10{@include padding-top(10px);}
+.padding-bottom-10{@include padding-bottom(10px);}
+
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -125,15 +186,15 @@ body {
   width: 100%
 }
 
- .ta-editor {
+.ta-editor {
     min-height: 300px;
     height: auto;
     overflow: auto;
     font-family: inherit;
     font-size: 100%;
     margin:20px 0;
- }
+}
 
- .pull-right {
+.pull-right {
   float: right;
- }
+}
